@@ -1,0 +1,5 @@
+#Enter MySQL database information below
+DataStore:
+  user: root
+  password: pass
+  databaseURL: localhost:3306/fuedalism

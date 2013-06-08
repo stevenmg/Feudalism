@@ -12,13 +12,11 @@ CREATE TABLE `kingdoms` (
 
 CREATE TABLE `kingdomclaims` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `corner1` point NOT NULL,
-  `corner2` point NOT NULL,
+  `region` polygon NOT NULL,
   `kingdom` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `corner1_UNIQUE` (`corner1`(25)),
-  UNIQUE KEY `corner2_UNIQUE` (`corner2`(25)),
+  UNIQUE KEY `corner1_UNIQUE` (`region`(25)),
   KEY `kingdom_idx` (`kingdom`),
   CONSTRAINT `kingdoms` FOREIGN KEY (`kingdom`) REFERENCES `kingdoms` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
@@ -36,13 +34,11 @@ CREATE TABLE `vassals` (
 
 CREATE TABLE `fiefs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `corner1` point NOT NULL,
-  `corner2` point NOT NULL,
+  `region` polygon DEFAULT NULL,
   `vassal` int(11) NOT NULL,
-  PRIMARY KEY (`id`,`corner1`(25)),
+  PRIMARY KEY (`id`),
   UNIQUE KEY `id_UNIQUE` (`id`),
-  UNIQUE KEY `corner1_UNIQUE` (`corner1`(25)),
-  UNIQUE KEY `corner2_UNIQUE` (`corner2`(25)),
+  UNIQUE KEY `corner1_UNIQUE` (`region`(25)),
   KEY `vassal_idx` (`vassal`),
   CONSTRAINT `vassal` FOREIGN KEY (`vassal`) REFERENCES `vassals` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8$$
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8$$

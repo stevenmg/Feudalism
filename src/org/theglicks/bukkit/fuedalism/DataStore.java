@@ -2,13 +2,11 @@ package org.theglicks.bukkit.fuedalism;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataStore {
 	static Connection conn;
-	public static ResultSet rs;
 	public static Statement st;
 	
 	public static void initialize(){

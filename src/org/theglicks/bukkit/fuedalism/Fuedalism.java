@@ -16,6 +16,6 @@ public class Fuedalism extends JavaPlugin{
 		mainConfig.saveDefaultConfig();
 		mainConfig.getConfig().options().copyDefaults(true);
 		
-		DataStore ds = new DataStore();
+		DataStore.initialize();
 	}
 }

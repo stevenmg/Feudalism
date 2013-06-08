@@ -7,15 +7,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataStore {
-	Connection conn;
-	ResultSet rs;
-	Statement st;
+	static Connection conn;
+	public static ResultSet rs;
+	public static Statement st;
 	
-	public DataStore(){
-		initialize();
-	}
-	
-	public void initialize(){
+	public static void initialize(){
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://" +
 					Fuedalism.mainConfig.getConfig().getString("DataStore.databaseURL"),

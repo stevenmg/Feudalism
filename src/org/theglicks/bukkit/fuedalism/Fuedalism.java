@@ -19,13 +19,11 @@ public class Fuedalism extends JavaPlugin{
 		
 		DataStore.initialize();
 		
+		//Code below is for testing only
 		Location loc = new Location(Bukkit.getWorld("world"), 20, 20, 1);
-		Fief f = new Fief(loc);
-		
-		if(f.exists()){
-			Bukkit.getLogger().info("fief exists");
-		} else {
-			Bukkit.getLogger().warning("fief does not exist");
-		}
+		Location loc0 = new Location(Bukkit.getWorld("world"), 10, 10, 1);
+		Fief f = new Fief(loc, loc0, Bukkit.getPlayer("steven"));
+		f.save();
+		//End of test code
 	}
 }

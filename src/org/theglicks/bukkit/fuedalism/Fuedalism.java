@@ -3,6 +3,9 @@ package org.theglicks.bukkit.fuedalism;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.theglicks.bukkit.fuedalism.commands.FiefCmd;
+import org.theglicks.bukkit.fuedalism.commands.KingdomCmd;
+import org.theglicks.bukkit.fuedalism.landManagement.Fief;
 
 public class Fuedalism extends JavaPlugin{
 	
@@ -18,6 +21,9 @@ public class Fuedalism extends JavaPlugin{
 		mainConfig.getConfig().options().copyDefaults(true);
 		
 		DataStore.initialize();
+		
+		getCommand("kingdom").setExecutor(new KingdomCmd(this));
+		getCommand("fief").setExecutor(new FiefCmd(this));
 		
 		//Code below is for testing only
 		Location loc = new Location(Bukkit.getWorld("world"), 20, 20, 1);

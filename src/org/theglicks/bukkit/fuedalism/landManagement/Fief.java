@@ -1,10 +1,11 @@
-package org.theglicks.bukkit.fuedalism;
+package org.theglicks.bukkit.fuedalism.landManagement;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
+import org.theglicks.bukkit.fuedalism.DataStore;
 
 public class Fief {
 	Location corner1;

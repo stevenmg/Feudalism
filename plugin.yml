@@ -2,3 +2,16 @@ name: Fuedalism
 author: StevenMG
 version: r0_Alpha
 main: org.theglicks.bukkit.fuedalism.Fuedalism
+commands:
+  kingdom:
+    description: Base command to manage kingdoms
+    usage: /<command> [args]
+    permission: Fuedalism.basic
+    permission-message: You do not have permission to use this command!
+    alias: k
+  fief:
+    description: Base command to manage fiefs
+    usage: /<command> [args]
+    permission: Fuedalism.basic
+    permission-message: You do not have permission to use this command!
+    alias: f

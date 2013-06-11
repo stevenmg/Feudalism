@@ -1,11 +1,10 @@
 package org.theglicks.bukkit.fuedalism;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.theglicks.bukkit.fuedalism.commands.FiefCmd;
 import org.theglicks.bukkit.fuedalism.commands.KingdomCmd;
-import org.theglicks.bukkit.fuedalism.landManagement.Fief;
+import org.theglicks.bukkit.fuedalism.events.PlayerInteract;
 
 public class Fuedalism extends JavaPlugin{
 	
@@ -22,14 +21,9 @@ public class Fuedalism extends JavaPlugin{
 		
 		DataStore.initialize();
 		
+		getServer().getPluginManager().registerEvents(new PlayerInteract(), this);
+		
 		getCommand("kingdom").setExecutor(new KingdomCmd(this));
 		getCommand("fief").setExecutor(new FiefCmd(this));
-		
-		//Code below is for testing only
-		Location loc = new Location(Bukkit.getWorld("world"), 20, 20, 1);
-		Location loc0 = new Location(Bukkit.getWorld("world"), 10, 10, 1);
-		Fief f = new Fief(loc, loc0, Bukkit.getPlayer("steven"));
-		f.save();
-		//End of test code
 	}
 }

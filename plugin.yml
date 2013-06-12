@@ -2,16 +2,17 @@ name: Fuedalism
 author: StevenMG
 version: r0_Alpha
 main: org.theglicks.bukkit.fuedalism.Fuedalism
+website: http://dev.bukkit.org/bukkit-mods/gp-factions/
+description: A land claiming and PVP plugin inspired by Greif Prevention and Factions
+
 commands:
   kingdom:
     description: Base command to manage kingdoms
-    usage: /<command> [args]
     permission: Fuedalism.basic
     permission-message: You do not have permission to use this command!
-    alias: k
+    aliases: k
   fief:
     description: Base command to manage fiefs
-    usage: /<command> [args]
     permission: Fuedalism.basic
     permission-message: You do not have permission to use this command!
-    alias: f
+    aliases: f

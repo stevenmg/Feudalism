@@ -27,6 +27,8 @@ public class SelectionManager {
 			tempList.add(point);
 			claimPoints.put(player, tempList);
 		}
+		
+		player.sendMessage("Corner selected: " + point.getX() + ", " + point.getZ());
 	}
 	
 	public static boolean canCreateClaim(Player player){

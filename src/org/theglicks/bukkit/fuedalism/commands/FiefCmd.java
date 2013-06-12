@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.Fuedalism;
+import org.theglicks.bukkit.fuedalism.landManagement.Fief;
 import org.theglicks.bukkit.fuedalism.landManagement.SelectionManager;
 
 public class FiefCmd implements CommandExecutor{
@@ -16,8 +17,15 @@ public class FiefCmd implements CommandExecutor{
 			if(args[0].equalsIgnoreCase("create")){
 				if(SelectionManager.canCreateClaim(p)){
 					SelectionManager.getFief(p).save();
-					p.sendMessage("fief created!");
+					p.sendMessage("Fief created Successfully!");
 				}
+			} else if(args[0].equalsIgnoreCase("abandon")){
+				Fief f = new Fief(p.getLocation());
+				
+				if(f.exists()){
+					//TODO this code is not working
+					p.sendMessage("Fief abandoned!");
+				} else { p.sendMessage("Fief does not exist at your location!"); }
 			}
 		}
 		return true;

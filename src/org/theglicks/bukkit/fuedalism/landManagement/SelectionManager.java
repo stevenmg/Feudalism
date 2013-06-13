@@ -43,7 +43,7 @@ public class SelectionManager {
 	}
 	
 	public static Fief getFief(Player p){
-		Fief f = new Fief(claimPoints.get(p).get(0), claimPoints.get(p).get(0), p);
+		Fief f = new Fief(claimPoints.get(p).get(0), claimPoints.get(p).get(1), p);
 		return f;
 	}
 }

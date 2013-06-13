@@ -2,14 +2,20 @@ package org.theglicks.bukkit.fuedalism;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataStore {
-	static Connection conn;
-	public static Statement st;
+	public Connection conn;
+	public Statement st;
+	public ResultSet rs;
 	
-	public static void initialize(){
+	public DataStore(){
+		initialize();
+	}
+	
+	public void initialize(){
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://" +
 					Fuedalism.mainConfig.getConfig().getString("DataStore.databaseURL"),

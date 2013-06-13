@@ -19,8 +19,6 @@ public class Fuedalism extends JavaPlugin{
 		mainConfig.saveDefaultConfig();
 		mainConfig.getConfig().options().copyDefaults(true);
 		
-		DataStore.initialize();
-		
 		getServer().getPluginManager().registerEvents(new PlayerInteract(), this);
 		
 		getCommand("kingdom").setExecutor(new KingdomCmd(this));

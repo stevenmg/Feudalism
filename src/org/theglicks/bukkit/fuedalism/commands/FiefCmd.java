@@ -23,7 +23,7 @@ public class FiefCmd implements CommandExecutor{
 				Fief f = new Fief(p.getLocation());
 				
 				if(f.exists()){
-					//TODO this code is not working
+					f.delete();
 					p.sendMessage("Fief abandoned!");
 				} else { p.sendMessage("Fief does not exist at your location!"); }
 			}

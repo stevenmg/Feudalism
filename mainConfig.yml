@@ -1,3 +1,5 @@
+#For help with how to configure this plugin please refer to the wiki!
+
 #Enter MySQL database information below
 DataStore:
   user: root

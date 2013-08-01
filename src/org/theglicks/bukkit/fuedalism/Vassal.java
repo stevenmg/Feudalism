@@ -13,8 +13,7 @@ public class Vassal{
 	public Vassal(String vassalName){
 		try {
 			name = vassalName;
-			vData.rs = vData.st.executeQuery("SELECT * FROM `vassals` WHERE `name` = '" +
-					name + "';");
+			vData.rs = vData.st.executeQuery("SELECT * FROM `vassals` WHERE `name` = '" + name + "';");
 			vData.rs.first();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -24,8 +23,7 @@ public class Vassal{
 	public Kingdom getKingdom(){
 		try {
 			DataStore ds = new DataStore();
-			ds.rs = ds.st.executeQuery("SELECT `name` FROM `kingdoms` WHERE `id` = " +
-					vData.rs.getInt("kingdom") + ";");
+			ds.rs = ds.st.executeQuery("SELECT `name` FROM `kingdoms` WHERE `id` = " + vData.rs.getInt("kingdom") + ";");
 			ds.rs.first();
 			
 			return new Kingdom(ds.rs.getString("name"));
@@ -40,5 +38,9 @@ public class Vassal{
 	
 	public String getName(){
 		return name;
+	}
+	
+	public boolean isAllied(Vassal v){
+		return getKingdom().isAllied(v.getKingdom());
 	}
 }

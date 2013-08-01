@@ -17,14 +17,12 @@ public class Kingdom {
 	public Kingdom(String kingdomName){
 		try {
 			name = kingdomName;
-			kData.rs = kData.st.executeQuery("SELECT * FROM `kingdoms` WHERE `name` = '" +
-					name + "';");
+			kData.rs = kData.st.executeQuery("SELECT * FROM `kingdoms` WHERE `name` = '" + name + "';");
 			kData.rs.first();
 			id = kData.rs.getInt("id");
 			
 			DataStore oName = new DataStore();
-			oName.rs = oName.st.executeQuery("SELECT `name` FROM `vassals` WHERE `id` = " +
-					kData.rs.getInt("owner") + ";");
+			oName.rs = oName.st.executeQuery("SELECT `name` FROM `vassals` WHERE `id` = " + kData.rs.getInt("owner") + ";");
 			oName.rs.first();
 			owner = Bukkit.getPlayer(oName.rs.getString("name"));
 		} catch (SQLException e) {
@@ -36,11 +34,9 @@ public class Kingdom {
 		try {
 			owner = kOwner;
 			DataStore oID = new DataStore();
-			oID.rs = oID.st.executeQuery("SELECT `id` FROM `vassals` WHERE `name` = '" +
-					owner.getName() + "';");
+			oID.rs = oID.st.executeQuery("SELECT `id` FROM `vassals` WHERE `name` = '" + owner.getName() + "';");
 			oID.rs.first();
-			kData.rs = kData.st.executeQuery("SELECT * FROM `kingdoms` WHERE `owner` = " +
-					oID.rs.getInt("id") + ";");
+			kData.rs = kData.st.executeQuery("SELECT * FROM `kingdoms` WHERE `owner` = " + oID.rs.getInt("id") + ";");
 			kData.rs.first();
 			id = kData.rs.getInt("id");
 			name = kData.rs.getString("name");
@@ -52,12 +48,10 @@ public class Kingdom {
 	public static Kingdom createKingdom(String name, String ownerName){
 		try {
 			DataStore oID = new DataStore();
-			oID.rs = oID.st.executeQuery("SELECT `id` FROM `vassals` WHERE `name` = '" +
-					ownerName + "';");
+			oID.rs = oID.st.executeQuery("SELECT `id` FROM `vassals` WHERE `name` = '" + ownerName + "';");
 			oID.rs.first();
 			DataStore ds = new DataStore();
-			ds.st.execute("INSERT INTO `fuedalism`.`kingdoms` (`name`, `owner`) VALUES ('" +
-					name + "', '" + oID.rs.getInt("id") + "');");
+			ds.st.execute("INSERT INTO `fuedalism`.`kingdoms` (`name`, `owner`) VALUES ('" + name + "', '" + oID.rs.getInt("id") + "');");
 			
 			return new Kingdom(name);
 		} catch (SQLException e) {
@@ -78,8 +72,7 @@ public class Kingdom {
 	public List<String> getMembers(){
 		try {
 			DataStore mList = new DataStore();
-			mList.rs = mList.st.executeQuery("SELECT `name` FROM `vassals` WHERE `kingdom` = "
-					+ kData.rs.getInt("id") + ";");
+			mList.rs = mList.st.executeQuery("SELECT `name` FROM `vassals` WHERE `kingdom` = " + kData.rs.getInt("id") + ";");
 			
 			List<String> memberList = new ArrayList<String>();
 			while(mList.rs.next()){

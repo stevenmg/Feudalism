@@ -7,9 +7,7 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.DataStore;
 
-public class Fief {
-	Location corner1;
-	Location corner2;
+public class Fief  extends Claim {
 	Player owner;
 	DataStore fiefData;
 	DataStore fiefOwner;

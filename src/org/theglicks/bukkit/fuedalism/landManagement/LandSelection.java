@@ -25,7 +25,7 @@ public class LandSelection {
 	}
 	
 	public Fief getFief(){
-		return new Fief(point1, point2, Bukkit.getPlayer(playerName));
+		return Fief.create(point1, point2, Bukkit.getPlayer(playerName));
 	}
 	
 	public String getOwner(){

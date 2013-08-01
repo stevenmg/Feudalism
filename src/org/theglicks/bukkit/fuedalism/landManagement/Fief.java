@@ -33,12 +33,27 @@ public class Fief  extends Claim {
 		}
 	}
 	
-	public Fief(Location corner, Location corner0, Player own){
-		fiefData = new DataStore();
-		fiefOwner = new DataStore();
-		corner1 = corner;
-		corner2 = corner0;
-		owner = own;
+	public static Fief create(Location corner, Location corner0, Player own){
+		try {
+			DataStore fOwner = new DataStore();
+			DataStore fData = new DataStore();
+			fOwner.rs = fOwner.st.executeQuery("SELECT `id` FROM `vassals` " +
+					"WHERE `name` = '" + own.getName() + "';");
+			fOwner.rs.first();
+			String ownId = fOwner.rs.getString("id");
+			fData.st.execute("INSERT INTO `fuedalism`.`fiefs` (" +
+					"`region`, `vassal`, `world`) VALUES (PolygonFromText('POLYGON((" + 
+					corner.getX() + " " + corner.getZ() + ", " +
+					corner0.getX() + " " + corner0.getZ() + ", " +
+					corner.getX() + " " + corner0.getZ() + ", " +
+					corner0.getX() + " " + corner.getZ() + ", " +
+					corner.getX() + " " + corner.getZ() + "))'), '" +
+					ownId + "', '" + corner.getWorld().getName() + "');");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return new Fief(corner);
 	}
 	
 	public void load(){
@@ -53,31 +68,6 @@ public class Fief  extends Claim {
 		} catch (Exception e) {
 			e.printStackTrace();
 		} return false;
-	}
-	
-	public void save(){
-		try {
-			fiefOwner.rs = fiefOwner.st.executeQuery("SELECT `id` FROM `vassals` " +
-					"WHERE `name` = '" + owner.getName() + "';");
-			fiefOwner.rs.first();
-			String ownId = fiefOwner.rs.getString("id");
-			
-			fiefData.st.execute("INSERT INTO `fuedalism`.`fiefs` (" +
-					"`region`, `vassal`, `world`) VALUES (PolygonFromText('POLYGON((" + 
-					corner1.getX() + " " + corner1.getZ() + ", " +
-					corner2.getX() + " " + corner2.getZ() + ", " +
-					corner1.getX() + " " + corner2.getZ() + ", " +
-					corner2.getX() + " " + corner1.getZ() + ", " +
-					corner1.getX() + " " + corner1.getZ() + "))'), '" +
-					ownId + "', '" + corner1.getWorld().getName() + "');");
-			
-			fiefData.rs = fiefData.st.executeQuery("SELECT * FROM `fiefs` WHERE MBRCONTAINS("
-					+ "`region`, POINT(" + corner1.getX() + "," + corner1.getZ() + "))"
-					+ " AND `world` = '" + corner1.getWorld().getName() + "';");
-			fiefData.rs.first();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
 	}
 	
 	public void delete(){

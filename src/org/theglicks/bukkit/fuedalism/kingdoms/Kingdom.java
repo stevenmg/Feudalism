@@ -12,6 +12,7 @@ public class Kingdom {
 	private Player owner;
 	private String name;
 	private DataStore kData = new DataStore();
+	private int id;
 	
 	public Kingdom(String kingdomName){
 		try {
@@ -19,6 +20,8 @@ public class Kingdom {
 			kData.rs = kData.st.executeQuery("SELECT * FROM `kingdoms` WHERE `name` = '" +
 					name + "';");
 			kData.rs.first();
+			id = kData.rs.getInt("id");
+			
 			DataStore oName = new DataStore();
 			oName.rs = oName.st.executeQuery("SELECT `name` FROM `vassals` WHERE `id` = " +
 					kData.rs.getInt("owner") + ";");
@@ -39,6 +42,7 @@ public class Kingdom {
 			kData.rs = kData.st.executeQuery("SELECT * FROM `kingdoms` WHERE `owner` = " +
 					oID.rs.getInt("id") + ";");
 			kData.rs.first();
+			id = kData.rs.getInt("id");
 			name = kData.rs.getString("name");
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -93,5 +97,13 @@ public class Kingdom {
 	
 	public String getName(){
 		return name;
+	}
+	
+	public boolean isAllied(Kingdom k){
+		return AllianceManager.hasAlliance(this, k);
+	}
+	
+	public int getId(){
+		return id;
 	}
 }

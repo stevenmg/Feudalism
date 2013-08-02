@@ -69,4 +69,8 @@ public class KingdomClaim extends Claim {
 			e.printStackTrace();
 		}
 	}
+	
+	public Kingdom getKingdom(){
+		return kingdom;
+	}
 }

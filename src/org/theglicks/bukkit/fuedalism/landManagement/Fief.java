@@ -74,4 +74,8 @@ public class Fief  extends Claim {
 			e.printStackTrace();
 		}
 	}
+	
+	public Player getOwner(){
+		return owner;
+	}
 }

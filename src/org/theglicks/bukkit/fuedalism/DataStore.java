@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class DataStore {
-	public Connection conn;
+	public static Connection conn;
 	public Statement st;
 	public ResultSet rs;
 	
@@ -17,10 +17,12 @@ public class DataStore {
 	
 	public void initialize(){
 		try {
-			conn = DriverManager.getConnection("jdbc:mysql://" +
-					Fuedalism.mainConfig.getConfig().getString("DataStore.databaseURL"),
-					Fuedalism.mainConfig.getConfig().getString("DataStore.user"),
-					Fuedalism.mainConfig.getConfig().getString("DataStore.password"));
+			if (conn == null){
+				conn = DriverManager.getConnection("jdbc:mysql://" +
+						Fuedalism.mainConfig.getConfig().getString("DataStore.databaseURL"),
+						Fuedalism.mainConfig.getConfig().getString("DataStore.user"),
+						Fuedalism.mainConfig.getConfig().getString("DataStore.password"));
+			}
 			
 			st = conn.createStatement();
 		} catch (SQLException e) {

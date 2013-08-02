@@ -56,10 +56,6 @@ public class Fief  extends Claim {
 		return new Fief(corner);
 	}
 	
-	public void load(){
-		
-	}
-	
 	public boolean exists(){
 		try {
 			if(fiefData.rs.first()){

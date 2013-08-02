@@ -32,4 +32,8 @@ public class SelectionManager {
 	public static Fief getFief(Player p){
 		return getSelection(p).getFief();
 	}
+	
+	public static KingdomClaim getKingdomClaim(Player p){
+		return getSelection(p).getKingdomClaim();
+	}
 }

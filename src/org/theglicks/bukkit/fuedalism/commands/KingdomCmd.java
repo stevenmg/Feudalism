@@ -6,6 +6,8 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.Fuedalism;
 import org.theglicks.bukkit.fuedalism.kingdoms.Kingdom;
+import org.theglicks.bukkit.fuedalism.landManagement.KingdomClaim;
+import org.theglicks.bukkit.fuedalism.landManagement.SelectionManager;
 
 public class KingdomCmd implements CommandExecutor{
 	public KingdomCmd(Fuedalism fuedalism) {}
@@ -22,6 +24,14 @@ public class KingdomCmd implements CommandExecutor{
 					builder.append(name);
 				}
 				player.sendMessage(builder.toString());
+			} else if(args[0].equalsIgnoreCase("claim")){
+				if(SelectionManager.canCreateClaim(player)){
+					SelectionManager.getKingdomClaim(player);
+					player.sendMessage("Kingdom claim created!");
+				} else { player.sendMessage("Failed to create claim!"); }
+			} else if(args[0].equalsIgnoreCase("abandonClaim")){
+				KingdomClaim claim = new KingdomClaim(player.getLocation());
+				claim.delete();
 			}
 		}
 		return true;

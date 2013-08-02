@@ -16,6 +16,7 @@ public class FiefCmd implements CommandExecutor{
 			Player p = (Player) sender;
 			if(args[0].equalsIgnoreCase("create")){
 				if(SelectionManager.canCreateClaim(p)){
+					SelectionManager.getFief(p);
 					p.sendMessage("Fief created Successfully!");
 				}
 			} else if(args[0].equalsIgnoreCase("abandon")){

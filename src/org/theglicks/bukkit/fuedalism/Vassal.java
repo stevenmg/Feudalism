@@ -5,6 +5,9 @@ import java.sql.SQLException;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.kingdoms.Kingdom;
+import org.theglicks.bukkit.fuedalism.landManagement.Claim;
+import org.theglicks.bukkit.fuedalism.landManagement.Fief;
+import org.theglicks.bukkit.fuedalism.landManagement.KingdomClaim;
 
 public class Vassal{
 	private String name;
@@ -42,5 +45,20 @@ public class Vassal{
 	
 	public boolean isAllied(Vassal v){
 		return getKingdom().isAllied(v.getKingdom());
+	}
+	
+	public boolean canBuild(Claim claim){
+		if(claim instanceof Fief){
+			Fief f = (Fief) claim;
+			if(f.getOwner() == Bukkit.getPlayer(name)){
+				return true;
+			} return false;
+		} else if (claim instanceof KingdomClaim){
+			KingdomClaim c = (KingdomClaim) claim;
+			if(c.getKingdom() == getKingdom()){
+				return true;
+			} return false;
+		}
+		return false;
 	}
 }

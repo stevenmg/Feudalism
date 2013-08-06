@@ -37,13 +37,23 @@ public class KingdomCmd implements CommandExecutor{
 					player.sendMessage(builder.toString());
 				}
 			} else if(args[0].equalsIgnoreCase("claim")){
-				if(SelectionManager.canCreateClaim(player)){
-					SelectionManager.getKingdomClaim(player);
-					player.sendMessage("Kingdom claim created!");
-				} else { player.sendMessage("Failed to create claim!"); }
+				if (v.canClaimForKingdom()) {
+					if (SelectionManager.canCreateClaim(player)) {
+						SelectionManager.getKingdomClaim(player);
+						player.sendMessage("Kingdom claim created!");
+					} else {
+						player.sendMessage("Select two corners first!");
+					}
+				} else {
+					player.sendMessage("You cannot claim for your kingdom!");
+				}
 			} else if(args[0].equalsIgnoreCase("abandonClaim")){
-				KingdomClaim claim = new KingdomClaim(player.getLocation());
-				claim.delete();
+				if(v.canClaimForKingdom()){
+					KingdomClaim claim = new KingdomClaim(player.getLocation());
+					claim.delete();
+				} else {
+					player.sendMessage("You cannot delete this claim!");
+				}
 			}
 		}
 		return true;

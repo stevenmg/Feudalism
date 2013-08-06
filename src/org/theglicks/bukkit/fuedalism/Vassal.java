@@ -67,4 +67,24 @@ public class Vassal{
 			return true;
 		} return false;
 	}
+	
+	public boolean hasKingdom(){
+		try {
+			if(((Integer)vData.rs.getInt("kingdom")) == null){
+				return false;
+			} return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public boolean canClaimForKingdom(){
+		try {
+			return vData.rs.getBoolean("leader");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 }

@@ -5,6 +5,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.Fuedalism;
+import org.theglicks.bukkit.fuedalism.Vassal;
 import org.theglicks.bukkit.fuedalism.kingdoms.Kingdom;
 import org.theglicks.bukkit.fuedalism.landManagement.KingdomClaim;
 import org.theglicks.bukkit.fuedalism.landManagement.SelectionManager;
@@ -15,8 +16,17 @@ public class KingdomCmd implements CommandExecutor{
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
 		if(sender instanceof Player){
 			Player player = (Player) sender;
+			Vassal v = new Vassal(player.getName());
 			if(args[0].equalsIgnoreCase("create")){
-				Kingdom.createKingdom(args[1], sender.getName());
+				if(v.canCreateKingdom()){
+					if(args.length == 2){
+						Kingdom.createKingdom(args[1], sender.getName());
+					} else {
+						player.sendMessage("Check correct command usage!");
+					}
+				} else {
+					player.sendMessage("You do not have permission to create a kingdom!");
+				}
 			} else if(args[0].equalsIgnoreCase("vassals")){
 				Kingdom k = new Kingdom(args[1]);
 				StringBuilder builder = new StringBuilder();

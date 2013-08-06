@@ -61,4 +61,10 @@ public class Vassal{
 		}
 		return false;
 	}
+	
+	public boolean canCreateKingdom(){
+		if(getPlayer().hasPermission("Fuedalism.basic.createKingdom")){
+			return true;
+		} return false;
+	}
 }

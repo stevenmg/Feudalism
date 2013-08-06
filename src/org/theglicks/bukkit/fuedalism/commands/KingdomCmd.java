@@ -28,12 +28,14 @@ public class KingdomCmd implements CommandExecutor{
 					player.sendMessage("You do not have permission to create a kingdom!");
 				}
 			} else if(args[0].equalsIgnoreCase("vassals")){
-				Kingdom k = new Kingdom(args[1]);
-				StringBuilder builder = new StringBuilder();
-				for(String name: k.getMembers()){
-					builder.append(name);
+				if(args.length == 2){
+					Kingdom k = new Kingdom(args[1]);
+					StringBuilder builder = new StringBuilder();
+					for(String name: k.getMembers()){
+						builder.append(name);
+					}
+					player.sendMessage(builder.toString());
 				}
-				player.sendMessage(builder.toString());
 			} else if(args[0].equalsIgnoreCase("claim")){
 				if(SelectionManager.canCreateClaim(player)){
 					SelectionManager.getKingdomClaim(player);

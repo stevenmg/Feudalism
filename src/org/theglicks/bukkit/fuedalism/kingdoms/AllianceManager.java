@@ -23,4 +23,18 @@ public class AllianceManager {
 	public static void addAlliance(Kingdom k1, Kingdom k2){
 		
 	}
+	
+	public static boolean hasRequest(Kingdom sender, Kingdom receiver){
+		try {
+			DataStore ds = new DataStore();
+			ds.rs = ds.st.executeQuery("SELECT * FROM `alliancerequests` WHERE `kingdom_sender` = " + sender.getId() + 
+					" AND `kingdom_receiver` = " + receiver.getId());
+			if(ds.rs.next()){
+				return true;
+			}
+		} catch (SQLException e) {
+			
+		}
+		return false;
+	}
 }

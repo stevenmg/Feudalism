@@ -74,6 +74,12 @@ public class KingdomCmd implements CommandExecutor{
 				} else {
 					player.sendMessage("Look up the correct command usage!");
 				}
+			} else if(args[0].equalsIgnoreCase("enemy")){
+				if(args.length == 2){
+					Kingdom k1 = v.getKingdom();
+					Kingdom k2 = new Kingdom(args[1]);
+					RelationManager.addEnemy(k1, k2);
+				}
 			}
 		}
 		return true;

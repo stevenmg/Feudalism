@@ -27,15 +27,6 @@ public class KingdomCmd implements CommandExecutor{
 				} else {
 					player.sendMessage("You do not have permission to create a kingdom!");
 				}
-			} else if(args[0].equalsIgnoreCase("vassals")){
-				if(args.length == 2){
-					Kingdom k = new Kingdom(args[1]);
-					StringBuilder builder = new StringBuilder();
-					for(String name: k.getMembers()){
-						builder.append(name);
-					}
-					player.sendMessage(builder.toString());
-				}
 			} else if(args[0].equalsIgnoreCase("claim")){
 				if (v.canClaimForKingdom()) {
 					if (SelectionManager.canCreateClaim(player)) {
@@ -52,8 +43,24 @@ public class KingdomCmd implements CommandExecutor{
 					KingdomClaim claim = new KingdomClaim(player.getLocation());
 					claim.delete();
 				} else {
-					player.sendMessage("You cannot delete this claim!");
+					player.sendMessage("You cannot abandon this claim!");
 				}
+			} else if(args[0].equalsIgnoreCase("show")){
+				Kingdom k;
+				if(args.length == 2){
+					k = new Kingdom(args[1]);	
+				} else {
+					k = v.getKingdom();
+				}			
+				StringBuilder b = new StringBuilder();
+				for(String name: k.getMembers()){
+					if(!name.equals(k.getOwner().getName())){
+						b.append(name);
+					}
+				}
+				player.sendMessage("Name: " + k.getName());
+				player.sendMessage("Owner: " + k.getOwner().getName());
+				player.sendMessage("Members: " + b.toString());
 			}
 		}
 		return true;

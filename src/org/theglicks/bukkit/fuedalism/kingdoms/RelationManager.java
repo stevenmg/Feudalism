@@ -6,7 +6,7 @@ import java.util.Calendar;
 import org.theglicks.bukkit.fuedalism.DataStore;
 import org.theglicks.bukkit.fuedalism.Fuedalism;
 
-public class AllianceManager {
+public class RelationManager {
 	public static boolean hasAlliance(Kingdom k1, Kingdom k2){	
 		try {
 			DataStore ds = new DataStore();
@@ -54,6 +54,27 @@ public class AllianceManager {
 			String expireDate = cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DAY_OF_MONTH);
 			ds.st.execute("INSERT INTO `fuedalism`.`alliancerequests` (`kingdom_sender`, `kingdom_receiver`, `expiration`) VALUES "
 					+ "('" + sender.getId() + "', '" + receiver.getId() + "', '" + expireDate + "');");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static boolean hasEnemy(Kingdom k1, Kingdom k2){
+		try {
+			DataStore ds = new DataStore();
+			ds.rs = ds.st.executeQuery("SELECT * FROM `enemies` WHERE (`kingdom1` = " + k1.getId() + " AND `kingdom2` = "
+					+ k2.getId() + ") OR (`kingdom2` = " + k1.getId() + " AND `kingdom1` = " + k2.getId() + ")");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public static void addEnemy(Kingdom k1, Kingdom k2){
+		try {
+			DataStore ds = new DataStore();
+			ds.st.execute("INSERT INTO `fuedalism`.`enemies` (`kingdom1`, `kingdom2`) VALUES ('" + k1.getId() + "', '"
+					+ k2.getId() + "');");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

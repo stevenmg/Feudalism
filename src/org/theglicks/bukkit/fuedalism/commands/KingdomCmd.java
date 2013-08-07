@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.Fuedalism;
 import org.theglicks.bukkit.fuedalism.Vassal;
-import org.theglicks.bukkit.fuedalism.kingdoms.AllianceManager;
+import org.theglicks.bukkit.fuedalism.kingdoms.RelationManager;
 import org.theglicks.bukkit.fuedalism.kingdoms.Kingdom;
 import org.theglicks.bukkit.fuedalism.landManagement.KingdomClaim;
 import org.theglicks.bukkit.fuedalism.landManagement.SelectionManager;
@@ -66,10 +66,10 @@ public class KingdomCmd implements CommandExecutor{
 				if(args.length == 2){
 					Kingdom kSender = v.getKingdom();
 					Kingdom kReceiver = new Kingdom(args[1]);
-					if(AllianceManager.hasRequest(kReceiver, kSender) && !AllianceManager.hasAlliance(kSender, kReceiver)){
-						AllianceManager.addAlliance(kSender, kReceiver);
-					} else if(!AllianceManager.hasRequest(kSender, kReceiver)){
-						AllianceManager.addRequest(kSender, kReceiver);
+					if(RelationManager.hasRequest(kReceiver, kSender) && !RelationManager.hasAlliance(kSender, kReceiver)){
+						RelationManager.addAlliance(kSender, kReceiver);
+					} else if(!RelationManager.hasRequest(kSender, kReceiver)){
+						RelationManager.addRequest(kSender, kReceiver);
 					}	
 				} else {
 					player.sendMessage("Look up the correct command usage!");

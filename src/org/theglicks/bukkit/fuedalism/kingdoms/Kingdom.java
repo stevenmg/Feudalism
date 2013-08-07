@@ -93,7 +93,7 @@ public class Kingdom {
 	}
 	
 	public boolean isAllied(Kingdom k){
-		return AllianceManager.hasAlliance(this, k);
+		return RelationManager.hasAlliance(this, k);
 	}
 	
 	public int getId(){

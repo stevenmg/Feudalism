@@ -19,13 +19,19 @@ public class PlayerMove implements Listener{
 			//Checks if player is entering a kingdom claim
 			KingdomClaim claim = new KingdomClaim(event.getTo());
 			if (claim.exists()){
-				event.getPlayer().sendMessage("You are now in " + claim.getKingdom().getName() + "'s claim");
+				KingdomClaim claim1 = new KingdomClaim(event.getFrom());
+				if(!claim1.exists()){
+					event.getPlayer().sendMessage("You are now in " + claim.getKingdom().getName() + "'s claim");
+				}
 			}
 		
 			//Checks if player is entering a fief
 			Fief f = new Fief(event.getTo());
 			if(f.exists()){
-				event.getPlayer().sendMessage("You are now in " + f.getOwner() + "'s fief");
+				Fief f1 = new Fief(event.getFrom());
+				if(!f1.exists()){
+					event.getPlayer().sendMessage("You are now in " + f.getOwner() + "'s fief");
+				}
 			}
 		}
 	}

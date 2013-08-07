@@ -6,6 +6,7 @@ import org.theglicks.bukkit.fuedalism.commands.FiefCmd;
 import org.theglicks.bukkit.fuedalism.commands.KingdomCmd;
 import org.theglicks.bukkit.fuedalism.events.BlockBreak;
 import org.theglicks.bukkit.fuedalism.events.BlockPlace;
+import org.theglicks.bukkit.fuedalism.events.CommandPreprocess;
 import org.theglicks.bukkit.fuedalism.events.EntityDamageByEntity;
 import org.theglicks.bukkit.fuedalism.events.InventoryOpen;
 import org.theglicks.bukkit.fuedalism.events.PlayerInteract;
@@ -32,6 +33,7 @@ public class Fuedalism extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new InventoryOpen(), this);
 		getServer().getPluginManager().registerEvents(new EntityDamageByEntity(), this);
 		getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
+		getServer().getPluginManager().registerEvents(new CommandPreprocess(), this);
 		
 		getCommand("kingdom").setExecutor(new KingdomCmd(this));
 		getCommand("fief").setExecutor(new FiefCmd(this));

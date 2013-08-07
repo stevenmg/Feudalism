@@ -6,6 +6,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.DataStore;
+import org.theglicks.bukkit.fuedalism.Vassal;
 
 public class Fief  extends Claim {
 	Player owner;
@@ -75,7 +76,7 @@ public class Fief  extends Claim {
 		}
 	}
 	
-	public Player getOwner(){
-		return owner;
+	public Vassal getOwner(){
+		return new Vassal(owner.getName());
 	}
 }

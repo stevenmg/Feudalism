@@ -8,3 +8,10 @@ DataStore:
   
 AllyRequest:
   daysToExpire: 7 #Sets how soon alliance requests expire
+
+CommandBlocking:
+  blockedInEnemyClaim: #List of commands blocked inside enemy claims
+    -f
+  blockDistanceNearPlayer: 20 #Distance a player needs to be from enemy players to use blocked commands
+  blockedNearEnemyPlayer: #List of commands blocked near enemy players
+    -f

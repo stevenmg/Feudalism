@@ -18,7 +18,12 @@ public class SelectionManager {
 	}
 	
 	public static void addClaimPoint(Player player, Location point){
-		LandSelection ls = getSelection(player);
+		LandSelection ls;
+		if(selections.containsKey(player.getName())){
+			ls = getSelection(player);
+		} else {
+			ls = new LandSelection(player.getName());
+		}
 		ls.addPoint(point);
 		saveSelection(ls);
 		

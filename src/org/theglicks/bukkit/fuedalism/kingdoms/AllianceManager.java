@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.Calendar;
 
 import org.theglicks.bukkit.fuedalism.DataStore;
+import org.theglicks.bukkit.fuedalism.Fuedalism;
 
 public class AllianceManager {
 	public static boolean hasAlliance(Kingdom k1, Kingdom k2){	
@@ -49,7 +50,7 @@ public class AllianceManager {
 		try {
 			DataStore ds = new DataStore();
 			Calendar cal = Calendar.getInstance();
-			cal.add(Calendar.DAY_OF_MONTH, 7);
+			cal.add(Calendar.DAY_OF_MONTH, Fuedalism.mainConfig.getConfig().getInt("AllianceRequest.daysToExpire"));
 			String expireDate = cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DAY_OF_MONTH);
 			ds.st.execute("INSERT INTO `fuedalism`.`alliancerequests` (`kingdom_sender`, `kingdom_receiver`, `expiration`) VALUES "
 					+ "('" + sender.getId() + "', '" + receiver.getId() + "', '" + expireDate + "');");

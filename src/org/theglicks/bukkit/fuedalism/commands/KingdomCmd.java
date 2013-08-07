@@ -6,6 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.Fuedalism;
 import org.theglicks.bukkit.fuedalism.Vassal;
+import org.theglicks.bukkit.fuedalism.kingdoms.AllianceManager;
 import org.theglicks.bukkit.fuedalism.kingdoms.Kingdom;
 import org.theglicks.bukkit.fuedalism.landManagement.KingdomClaim;
 import org.theglicks.bukkit.fuedalism.landManagement.SelectionManager;
@@ -28,7 +29,7 @@ public class KingdomCmd implements CommandExecutor{
 					player.sendMessage("You do not have permission to create a kingdom!");
 				}
 			} else if(args[0].equalsIgnoreCase("claim")){
-				if (v.canClaimForKingdom()) {
+				if (v.isLeader()) {
 					if (SelectionManager.canCreateClaim(player)) {
 						SelectionManager.getKingdomClaim(player);
 						player.sendMessage("Kingdom claim created!");
@@ -39,7 +40,7 @@ public class KingdomCmd implements CommandExecutor{
 					player.sendMessage("You cannot claim for your kingdom!");
 				}
 			} else if(args[0].equalsIgnoreCase("abandonClaim")){
-				if(v.canClaimForKingdom()){
+				if(v.isLeader()){
 					KingdomClaim claim = new KingdomClaim(player.getLocation());
 					claim.delete();
 				} else {
@@ -61,6 +62,18 @@ public class KingdomCmd implements CommandExecutor{
 				player.sendMessage("Name: " + k.getName());
 				player.sendMessage("Owner: " + k.getOwner().getName());
 				player.sendMessage("Members: " + b.toString());
+			} else if(args[0].equalsIgnoreCase("ally")){
+				if(args.length == 2){
+					Kingdom kSender = v.getKingdom();
+					Kingdom kReceiver = new Kingdom(args[1]);
+					if(AllianceManager.hasRequest(kReceiver, kSender) && !AllianceManager.hasAlliance(kSender, kReceiver)){
+						AllianceManager.addAlliance(kSender, kReceiver);
+					} else if(!AllianceManager.hasRequest(kSender, kReceiver)){
+						AllianceManager.addRequest(kSender, kReceiver);
+					}	
+				} else {
+					player.sendMessage("Look up the correct command usage!");
+				}
 			}
 		}
 		return true;

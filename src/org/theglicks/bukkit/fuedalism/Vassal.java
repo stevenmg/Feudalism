@@ -79,7 +79,7 @@ public class Vassal{
 		return false;
 	}
 	
-	public boolean canClaimForKingdom(){
+	public boolean isLeader(){
 		try {
 			return vData.rs.getBoolean("leader");
 		} catch (SQLException e) {

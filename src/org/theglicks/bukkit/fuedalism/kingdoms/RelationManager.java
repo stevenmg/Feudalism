@@ -64,6 +64,9 @@ public class RelationManager {
 			DataStore ds = new DataStore();
 			ds.rs = ds.st.executeQuery("SELECT * FROM `enemies` WHERE (`kingdom1` = " + k1.getId() + " AND `kingdom2` = "
 					+ k2.getId() + ") OR (`kingdom2` = " + k1.getId() + " AND `kingdom1` = " + k2.getId() + ")");
+			if(ds.rs.next()){
+				return true;
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

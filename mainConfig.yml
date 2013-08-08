@@ -11,7 +11,7 @@ AllyRequest:
 
 CommandBlocking:
   blockedInEnemyClaim: #List of commands blocked inside enemy claims
-    -f
+    - f
   blockDistanceNearPlayer: 20 #Distance a player needs to be from enemy players to use blocked commands
   blockedNearEnemyPlayer: #List of commands blocked near enemy players
-    -f
+    - f

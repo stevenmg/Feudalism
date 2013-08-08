@@ -15,3 +15,22 @@ CommandBlocking:
   blockDistanceNearPlayer: 20 #Distance a player needs to be from enemy players to use blocked commands
   blockedNearEnemyPlayer: #List of commands blocked near enemy players
     - f
+    
+LandClaims:
+  blockInteractInClaims: #Item id's of items that players cannot interact with in other claims
+    - 2 #grass (prevents players from growing long grass and flowers with bone meal)
+    - 326 #water bucket (not blocked by block place blocker)
+    - 327 #lava bucket (same as water)
+    - 324 #door
+    - 96 #trap door
+    - 356 #redstone repeater
+    - 404 #redstone comparator
+    - 69 #lever
+    - 84 #juke box
+    - 77 #stone button
+    - 143 #wood button (can still be activated by arrows)
+    - 154 #hopper
+    - 46 #tnt (prvents lighting with flint and steel)
+    - 25 #note block
+    - 54 #chest
+    #You can get the item id's of other blocks and add them to prevent players from right clicking certain blocks

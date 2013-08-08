@@ -3,6 +3,7 @@ package org.theglicks.bukkit.fuedalism;
 import java.sql.SQLException;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.kingdoms.Kingdom;
 import org.theglicks.bukkit.fuedalism.landManagement.Claim;
@@ -60,6 +61,20 @@ public class Vassal{
 			} return false;
 		}
 		return false;
+	}
+	
+	public boolean canBuild(Location loc){
+		KingdomClaim c = new KingdomClaim(loc);
+		Fief f = new Fief(loc);
+		
+		if(c.exists()){
+			if(!canBuild(c)) return false;
+		}
+		
+		if(f.exists()){
+			if(!canBuild(f)) return false;
+		}
+		return true;
 	}
 	
 	public boolean canCreateKingdom(){

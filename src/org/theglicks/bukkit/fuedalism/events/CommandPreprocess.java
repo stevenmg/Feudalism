@@ -21,12 +21,9 @@ public class CommandPreprocess implements Listener{
 		if(Fuedalism.mainConfig.getConfig().getList("CommandBlocking.blockedInEnemyClaim").contains(cmd[0])){	
 			KingdomClaim c = new KingdomClaim(v.getPlayer().getLocation());
 			Fief f = new Fief(v.getPlayer().getLocation());
-			event.getPlayer().sendMessage("Command in list");
 			
 			if(c.exists()){
-				event.getPlayer().sendMessage("Claim exists");
 				if(RelationManager.hasEnemy(v.getKingdom(), c.getKingdom())){
-					event.getPlayer().sendMessage("Should be canceled");
 					event.setCancelled(true);
 					return;
 				}
@@ -34,7 +31,6 @@ public class CommandPreprocess implements Listener{
 			
 			if(f.exists()){
 				if(RelationManager.hasEnemy(v.getKingdom(), f.getOwner().getKingdom())){
-					event.getPlayer().sendMessage("Should be canceled");
 					event.setCancelled(true);
 					return;
 				}
@@ -53,6 +49,5 @@ public class CommandPreprocess implements Listener{
 				}
 			}
 		}
-		event.getPlayer().sendMessage("Not canceled");
 	}
 }

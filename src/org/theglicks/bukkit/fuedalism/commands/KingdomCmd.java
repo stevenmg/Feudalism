@@ -80,6 +80,21 @@ public class KingdomCmd implements CommandExecutor{
 					Kingdom k2 = new Kingdom(args[1]);
 					RelationManager.addEnemy(k1, k2);
 				}
+			} else if(args[0].equalsIgnoreCase("invite")){
+				if(args.length == 2){
+					if(v.isLeader()){
+						Vassal vassal = new Vassal(args[1]);
+						Kingdom k = v.getKingdom();
+						k.invite(vassal);
+					}
+				}
+			} else if(args[0].equalsIgnoreCase("join")){
+				if(args.length == 2){
+					Kingdom k = new Kingdom(args[1]);
+					if(v.hasInvite(k)){
+						v.join(k);
+					}
+				}
 			}
 		}
 		return true;

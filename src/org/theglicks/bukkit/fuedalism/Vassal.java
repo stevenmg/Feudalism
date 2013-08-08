@@ -102,4 +102,34 @@ public class Vassal{
 		}
 		return false;
 	}
+	
+	public int getId(){
+		int id = 0;
+		try {
+			id = vData.rs.getInt("id");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return id;
+	}
+	
+	public boolean hasInvite(Kingdom k){
+		try {
+			DataStore ds = new DataStore();
+			ds.rs = ds.st.executeQuery("SELECT * FROM `invitations` WHERE `kingdom` = " + k.getId() + " AND `vassal` = " + getId());
+			if(ds.rs.next()) return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public void join(Kingdom k){
+		try {
+			DataStore ds = new DataStore();
+			ds.st.execute("UPDATE `fuedalism`.`vassals` SET `kingdom`='" + k.getId() + "', `leader`=0 WHERE `id`='" + getId() + "';");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

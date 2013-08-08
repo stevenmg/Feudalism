@@ -34,3 +34,6 @@ LandClaims:
     - 25 #note block
     - 54 #chest
     #You can get the item id's of other blocks and add them to prevent players from right clicking certain blocks
+    
+Invitations:
+  daysToExpire: 7 #How soon kingdom invitations will expire

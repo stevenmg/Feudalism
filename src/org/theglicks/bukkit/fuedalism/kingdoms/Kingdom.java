@@ -2,11 +2,14 @@ package org.theglicks.bukkit.fuedalism.kingdoms;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.DataStore;
+import org.theglicks.bukkit.fuedalism.Fuedalism;
+import org.theglicks.bukkit.fuedalism.Vassal;
 
 public class Kingdom {
 	private Player owner;
@@ -98,5 +101,18 @@ public class Kingdom {
 	
 	public int getId(){
 		return id;
+	}
+	
+	public void invite(Vassal v){
+		try {
+			DataStore ds = new DataStore();
+			Calendar cal = Calendar.getInstance();
+			cal.add(Calendar.DAY_OF_MONTH, Fuedalism.mainConfig.getConfig().getInt("Invitations.daysToExpire"));
+			String expiration = cal.get(Calendar.YEAR) + "-" + cal.get(Calendar.MONTH) + "-" + cal.get(Calendar.DAY_OF_MONTH);
+			ds.st.execute("INSERT INTO `fuedalism`.`invitations` (`kingdom`, `vassal`, `expiration`) VALUES ('" + getId()
+					+ "', '" + v.getId() + "', '" + expiration + "');");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }

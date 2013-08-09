@@ -29,10 +29,10 @@ public class LandSelection {
 		return Fief.create(point1, point2, Bukkit.getPlayer(playerName));
 	}
 	
-	public KingdomClaim getKingdomClaim(){
+	public KingdomLandClaim getKingdomClaim(){
 		Vassal v = new Vassal(playerName);
 		
-		return KingdomClaim.create(point1, point2, v.getKingdom());
+		return KingdomLandClaim.create(point1, point2, v.getKingdom());
 	}
 	
 	public String getOwner(){

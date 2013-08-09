@@ -1,18 +1,18 @@
-package org.theglicks.bukkit.fuedalism.events;
+package org.theglicks.bukkit.fuedalism.eventListeners;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.theglicks.bukkit.fuedalism.Vassal;
 import org.theglicks.bukkit.fuedalism.landManagement.Fief;
-import org.theglicks.bukkit.fuedalism.landManagement.KingdomClaim;
+import org.theglicks.bukkit.fuedalism.landManagement.KingdomLandClaim;
 
 public class BlockBreak implements Listener {
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent event){
 		Vassal v = new Vassal(event.getPlayer().getName());
 		Fief f = new Fief(event.getBlock().getLocation());
-		KingdomClaim c = new KingdomClaim(event.getBlock().getLocation());
+		KingdomLandClaim c = new KingdomLandClaim(event.getBlock().getLocation());
 		boolean canBuild = true;
 		
 		if(f.exists()){

@@ -8,7 +8,7 @@ import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.kingdoms.Kingdom;
 import org.theglicks.bukkit.fuedalism.landManagement.Claim;
 import org.theglicks.bukkit.fuedalism.landManagement.Fief;
-import org.theglicks.bukkit.fuedalism.landManagement.KingdomClaim;
+import org.theglicks.bukkit.fuedalism.landManagement.KingdomLandClaim;
 
 public class Vassal{
 	private String name;
@@ -54,8 +54,8 @@ public class Vassal{
 			if(f.getOwner() == Bukkit.getPlayer(name)){
 				return true;
 			} return false;
-		} else if (claim instanceof KingdomClaim){
-			KingdomClaim c = (KingdomClaim) claim;
+		} else if (claim instanceof KingdomLandClaim){
+			KingdomLandClaim c = (KingdomLandClaim) claim;
 			if(c.getKingdom() == getKingdom()){
 				return true;
 			} return false;
@@ -64,7 +64,7 @@ public class Vassal{
 	}
 	
 	public boolean canBuild(Location loc){
-		KingdomClaim c = new KingdomClaim(loc);
+		KingdomLandClaim c = new KingdomLandClaim(loc);
 		Fief f = new Fief(loc);
 		
 		if(c.exists()){

@@ -1,10 +1,10 @@
-package org.theglicks.bukkit.fuedalism.events;
+package org.theglicks.bukkit.fuedalism.eventListeners;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.theglicks.bukkit.fuedalism.landManagement.Fief;
-import org.theglicks.bukkit.fuedalism.landManagement.KingdomClaim;
+import org.theglicks.bukkit.fuedalism.landManagement.KingdomLandClaim;
 
 public class PlayerMove implements Listener{
 	@EventHandler
@@ -17,9 +17,9 @@ public class PlayerMove implements Listener{
 		
 		if(fromX!=toX || fromZ!=toZ){
 			//Checks if player is entering a kingdom claim
-			KingdomClaim claim = new KingdomClaim(event.getTo());
+			KingdomLandClaim claim = new KingdomLandClaim(event.getTo());
 			if (claim.exists()){
-				KingdomClaim claim1 = new KingdomClaim(event.getFrom());
+				KingdomLandClaim claim1 = new KingdomLandClaim(event.getFrom());
 				if(!claim1.exists()){
 					event.getPlayer().sendMessage("You are now in " + claim.getKingdom().getName() + "'s claim");
 				}

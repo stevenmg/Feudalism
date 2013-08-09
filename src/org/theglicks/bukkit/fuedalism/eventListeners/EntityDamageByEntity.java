@@ -1,4 +1,4 @@
-package org.theglicks.bukkit.fuedalism.events;
+package org.theglicks.bukkit.fuedalism.eventListeners;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

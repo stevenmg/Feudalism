@@ -5,16 +5,16 @@ import net.milkbowl.vault.economy.Economy;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.theglicks.bukkit.fuedalism.commands.FiefCmd;
-import org.theglicks.bukkit.fuedalism.commands.KingdomCmd;
-import org.theglicks.bukkit.fuedalism.events.BlockBreak;
-import org.theglicks.bukkit.fuedalism.events.BlockPlace;
-import org.theglicks.bukkit.fuedalism.events.CommandPreprocess;
-import org.theglicks.bukkit.fuedalism.events.EntityDamageByEntity;
-import org.theglicks.bukkit.fuedalism.events.InventoryOpen;
-import org.theglicks.bukkit.fuedalism.events.PlayerInteract;
-import org.theglicks.bukkit.fuedalism.events.PlayerJoin;
-import org.theglicks.bukkit.fuedalism.events.PlayerMove;
+import org.theglicks.bukkit.fuedalism.commandListeners.FiefCmd;
+import org.theglicks.bukkit.fuedalism.commandListeners.KingdomCmd;
+import org.theglicks.bukkit.fuedalism.eventListeners.BlockBreak;
+import org.theglicks.bukkit.fuedalism.eventListeners.BlockPlace;
+import org.theglicks.bukkit.fuedalism.eventListeners.CommandPreprocess;
+import org.theglicks.bukkit.fuedalism.eventListeners.EntityDamageByEntity;
+import org.theglicks.bukkit.fuedalism.eventListeners.InventoryOpen;
+import org.theglicks.bukkit.fuedalism.eventListeners.PlayerInteract;
+import org.theglicks.bukkit.fuedalism.eventListeners.PlayerJoin;
+import org.theglicks.bukkit.fuedalism.eventListeners.PlayerMove;
 
 public class Fuedalism extends JavaPlugin{
 	

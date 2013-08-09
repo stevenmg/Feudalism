@@ -1,4 +1,4 @@
-package org.theglicks.bukkit.fuedalism.commands;
+package org.theglicks.bukkit.fuedalism.commandListeners;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

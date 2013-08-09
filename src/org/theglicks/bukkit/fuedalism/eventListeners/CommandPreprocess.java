@@ -1,4 +1,4 @@
-package org.theglicks.bukkit.fuedalism.events;
+package org.theglicks.bukkit.fuedalism.eventListeners;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
@@ -9,7 +9,7 @@ import org.theglicks.bukkit.fuedalism.Fuedalism;
 import org.theglicks.bukkit.fuedalism.Vassal;
 import org.theglicks.bukkit.fuedalism.kingdoms.RelationManager;
 import org.theglicks.bukkit.fuedalism.landManagement.Fief;
-import org.theglicks.bukkit.fuedalism.landManagement.KingdomClaim;
+import org.theglicks.bukkit.fuedalism.landManagement.KingdomLandClaim;
 
 public class CommandPreprocess implements Listener{
 	@EventHandler
@@ -19,7 +19,7 @@ public class CommandPreprocess implements Listener{
 		Vassal v = new Vassal(event.getPlayer().getName());
 		
 		if(Fuedalism.mainConfig.getConfig().getList("CommandBlocking.blockedInEnemyClaim").contains(cmd[0])){	
-			KingdomClaim c = new KingdomClaim(v.getPlayer().getLocation());
+			KingdomLandClaim c = new KingdomLandClaim(v.getPlayer().getLocation());
 			Fief f = new Fief(v.getPlayer().getLocation());
 			
 			if(c.exists()){

@@ -38,7 +38,7 @@ public class SelectionManager {
 		return getSelection(p).getFief();
 	}
 	
-	public static KingdomClaim getKingdomClaim(Player p){
+	public static KingdomLandClaim getKingdomClaim(Player p){
 		return getSelection(p).getKingdomClaim();
 	}
 }

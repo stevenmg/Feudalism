@@ -6,12 +6,12 @@ import org.bukkit.Location;
 import org.theglicks.bukkit.fuedalism.DataStore;
 import org.theglicks.bukkit.fuedalism.kingdoms.Kingdom;
 
-public class KingdomClaim extends Claim {
+public class KingdomLandClaim extends Claim {
 	DataStore cData = new DataStore();
 	DataStore kData = new DataStore();
 	Kingdom kingdom;
 	
-	public KingdomClaim(Location loc){
+	public KingdomLandClaim(Location loc){
 		try {
 			cData.rs = cData.st.executeQuery("SELECT * FROM `kingdomclaims` WHERE MBRCONTAINS("
 					+ "`region`, POINT(" + loc.getX() + "," + loc.getZ() + "))"
@@ -29,7 +29,7 @@ public class KingdomClaim extends Claim {
 		}
 	}
 	
-	public static KingdomClaim create(Location corner, Location corner0, Kingdom k){
+	public static KingdomLandClaim create(Location corner, Location corner0, Kingdom k){
 		try {
 			DataStore cOwner = new DataStore();
 			DataStore cData = new DataStore();
@@ -48,7 +48,7 @@ public class KingdomClaim extends Claim {
 			e.printStackTrace();
 		}
 		
-		return new KingdomClaim(corner);
+		return new KingdomLandClaim(corner);
 	}
 	
 	public boolean exists(){

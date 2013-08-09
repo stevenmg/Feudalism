@@ -4,8 +4,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.theglicks.bukkit.fuedalism.Kingdom;
 import org.theglicks.bukkit.fuedalism.Vassal;
-import org.theglicks.bukkit.fuedalism.kingdoms.Kingdom;
 
 public class EntityDamageByEntity implements Listener {
 	@EventHandler

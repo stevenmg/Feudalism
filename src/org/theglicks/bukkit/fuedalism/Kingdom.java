@@ -1,4 +1,4 @@
-package org.theglicks.bukkit.fuedalism.kingdoms;
+package org.theglicks.bukkit.fuedalism;
 
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -7,9 +7,6 @@ import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
-import org.theglicks.bukkit.fuedalism.DataStore;
-import org.theglicks.bukkit.fuedalism.Fuedalism;
-import org.theglicks.bukkit.fuedalism.Vassal;
 
 public class Kingdom {
 	private Player owner;
@@ -96,7 +93,7 @@ public class Kingdom {
 	}
 	
 	public boolean isAllied(Kingdom k){
-		return RelationManager.hasAlliance(this, k);
+		return getRelation(k) == 1;
 	}
 	
 	public int getId(){
@@ -120,6 +117,71 @@ public class Kingdom {
 		try {
 			DataStore ds = new DataStore();
 			ds.st.execute("DELETE FROM `fuedalism`.`kingdoms` WHERE `id`='" + getId() + "';");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setRelation(Kingdom k, int relation){
+		int id1;
+		int id2;
+		if (getId() > k.getId()) {
+			id1 = getId();
+			id2 = k.getId();
+		} else {
+			id1 = k.getId();
+			id2 = getId();
+		}
+		
+		try {
+			DataStore ds = new DataStore();
+			ds.st.execute("INSERT INTO `fuedalism`.`relations` (`kingdom1`, `kingdom2`, `relation`) VALUES ('" 
+					+ id1 + "', '" + id2 + "', '" + relation + "');");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public int getRelation(Kingdom k){
+		int id1;
+		int id2;
+		if (getId() > k.getId()) {
+			id1 = getId();
+			id2 = k.getId();
+		} else {
+			id1 = k.getId();
+			id2 = getId();
+		}
+		
+		try {
+			DataStore ds = new DataStore();
+			ds.rs = ds.st.executeQuery("SELECT * FROM `relations` WHERE `kingdom1` = " + id1 + " AND `kingdom2` = " + id2);
+			if(ds.rs.next())
+				return ds.rs.getInt("relation");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return 3;
+	}
+	
+	public boolean hasAllyRequest(Kingdom kSender){
+		try {
+			DataStore ds = new DataStore();
+			ds.rs = ds.st.executeQuery("SELECT * FROM `alliancerequests` WHERE `kingdom_sender` = " + kSender.getId()
+					+ " AND `kingdom_receiver` = " + getId());
+			if(ds.rs.next())
+				return true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
+	
+	public void sendAllyRequest(Kingdom k){
+		try {
+			DataStore ds = new DataStore();
+			ds.st.execute("INSERT INTO `fuedalism`.`alliancerequests` (`kingdom_sender`, `kingdom_receiver`, `expiration`) VALUES "
+					+ "('" + getId() + "', '" + k.getId() + "', '3013-1-1');");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

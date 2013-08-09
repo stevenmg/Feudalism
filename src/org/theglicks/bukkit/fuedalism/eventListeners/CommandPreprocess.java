@@ -7,7 +7,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.theglicks.bukkit.fuedalism.Fuedalism;
 import org.theglicks.bukkit.fuedalism.Vassal;
-import org.theglicks.bukkit.fuedalism.kingdoms.RelationManager;
 import org.theglicks.bukkit.fuedalism.landManagement.Fief;
 import org.theglicks.bukkit.fuedalism.landManagement.KingdomLandClaim;
 
@@ -23,14 +22,14 @@ public class CommandPreprocess implements Listener{
 			Fief f = new Fief(v.getPlayer().getLocation());
 			
 			if(c.exists()){
-				if(RelationManager.hasEnemy(v.getKingdom(), c.getKingdom())){
+				if(v.getKingdom().getRelation(c.getKingdom()) == 2){
 					event.setCancelled(true);
 					return;
 				}
 			}
 			
 			if(f.exists()){
-				if(RelationManager.hasEnemy(v.getKingdom(), f.getOwner().getKingdom())){
+				if(v.getKingdom().getRelation(f.getOwner().getKingdom()) == 2){
 					event.setCancelled(true);
 					return;
 				}
@@ -42,7 +41,7 @@ public class CommandPreprocess implements Listener{
 			for(Entity ent: event.getPlayer().getNearbyEntities(distance, distance, distance)){
 				if(ent instanceof Player){
 					Vassal vassal = new Vassal(((Player) ent).getName());
-					if(RelationManager.hasEnemy(v.getKingdom(), vassal.getKingdom())){
+					if(v.getKingdom().getRelation(vassal.getKingdom()) == 2){
 						event.setCancelled(true);
 						return;
 					}

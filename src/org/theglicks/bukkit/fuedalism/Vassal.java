@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.theglicks.bukkit.fuedalism.kingdoms.Kingdom;
 import org.theglicks.bukkit.fuedalism.landManagement.Claim;
 import org.theglicks.bukkit.fuedalism.landManagement.Fief;
 import org.theglicks.bukkit.fuedalism.landManagement.KingdomLandClaim;

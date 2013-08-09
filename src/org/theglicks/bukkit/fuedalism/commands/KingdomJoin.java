@@ -2,8 +2,8 @@ package org.theglicks.bukkit.fuedalism.commands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.theglicks.bukkit.fuedalism.Kingdom;
 import org.theglicks.bukkit.fuedalism.Vassal;
-import org.theglicks.bukkit.fuedalism.kingdoms.Kingdom;
 
 public class KingdomJoin {
 	public static void execute(CommandSender sender, String[] args){

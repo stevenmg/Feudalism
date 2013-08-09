@@ -4,7 +4,7 @@ import java.sql.SQLException;
 
 import org.bukkit.Location;
 import org.theglicks.bukkit.fuedalism.DataStore;
-import org.theglicks.bukkit.fuedalism.kingdoms.Kingdom;
+import org.theglicks.bukkit.fuedalism.Kingdom;
 
 public class KingdomLandClaim extends Claim {
 	DataStore cData = new DataStore();

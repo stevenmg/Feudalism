@@ -9,7 +9,7 @@ public class SelectionManager {
 	private static HashMap<String, LandSelection> selections =
 			new HashMap<String, LandSelection>();
 	
-	private static LandSelection getSelection(Player p){
+	public static LandSelection getSelection(Player p){
 		return selections.get(p.getName());
 	}
 	

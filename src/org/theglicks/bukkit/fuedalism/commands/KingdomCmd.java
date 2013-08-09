@@ -21,7 +21,10 @@ public class KingdomCmd implements CommandExecutor{
 			if(args[0].equalsIgnoreCase("create")){
 				if(v.canCreateKingdom()){
 					if(args.length == 2){
-						Kingdom.createKingdom(args[1], sender.getName());
+						if(Fuedalism.econ.getBalance(player.getName(), player.getWorld().getName()) >= Fuedalism.mainConfig.getConfig().getDouble("Economy.costToCreateKingdom")){
+							Fuedalism.econ.withdrawPlayer(player.getName(), player.getWorld().getName(), Fuedalism.mainConfig.getConfig().getDouble("Economy.costToCreateKingdom"));
+							Kingdom.createKingdom(args[1], sender.getName());
+						}
 					} else {
 						player.sendMessage("Check correct command usage!");
 					}
@@ -31,8 +34,12 @@ public class KingdomCmd implements CommandExecutor{
 			} else if(args[0].equalsIgnoreCase("claim")){
 				if (v.isLeader()) {
 					if (SelectionManager.canCreateClaim(player)) {
-						SelectionManager.getKingdomClaim(player);
-						player.sendMessage("Kingdom claim created!");
+						int cost = Fuedalism.mainConfig.getConfig().getInt("Economy.costPerBlockKingdom") * SelectionManager.getSelection(player).getSize();
+						if(Fuedalism.econ.has(player.getName(), player.getWorld().getName(), cost)){
+							Fuedalism.econ.withdrawPlayer(player.getName(), player.getWorld().getName(), cost);
+							SelectionManager.getKingdomClaim(player);
+							player.sendMessage("Kingdom claim created!");
+						}
 					} else {
 						player.sendMessage("Select two corners first!");
 					}

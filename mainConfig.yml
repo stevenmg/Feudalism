@@ -37,3 +37,8 @@ LandClaims:
     
 Invitations:
   daysToExpire: 7 #How soon kingdom invitations will expire
+  
+Economy:
+  costPerBlockFief: 1 #How much each claimed block will cost for a fief
+  costPerBlockKingdom: 1 #How much each claimed block will cost for a kingdom claim
+  costToCreateKingdom: 1000 #How much it costs to create a kingdom

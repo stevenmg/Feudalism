@@ -49,4 +49,14 @@ public class LandSelection {
 			point1 = loc;
 		}
 	}
+	
+	public int getSize(){
+		Location loc0 = point1;
+		Location loc1 = point2;
+		Location loc2 = new Location(loc0.getWorld(), loc0.getX(), 0, loc1.getZ());
+		loc0.setY(0);
+		loc1.setY(0);
+		
+		return (int) (loc0.distance(loc1) * loc1.distance(loc2));
+	}
 }

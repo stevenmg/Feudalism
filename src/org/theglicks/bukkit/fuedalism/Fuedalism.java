@@ -1,6 +1,9 @@
 package org.theglicks.bukkit.fuedalism;
 
+import net.milkbowl.vault.economy.Economy;
+
 import org.bukkit.Bukkit;
+import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.theglicks.bukkit.fuedalism.commands.FiefCmd;
 import org.theglicks.bukkit.fuedalism.commands.KingdomCmd;
@@ -17,6 +20,7 @@ public class Fuedalism extends JavaPlugin{
 	
 	public JavaPlugin fuedalismPlugin;
 	public static ConfigAccessor mainConfig;
+	public static Economy econ = null;
 	
 	@Override
 	public void onEnable(){
@@ -34,6 +38,10 @@ public class Fuedalism extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new EntityDamageByEntity(), this);
 		getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
 		getServer().getPluginManager().registerEvents(new CommandPreprocess(), this);
+		
+		RegisteredServiceProvider<Economy> econProvider = getServer().getServicesManager().getRegistration(Economy.class);
+		if(econProvider != null)
+			econ = econProvider.getProvider();
 		
 		getCommand("kingdom").setExecutor(new KingdomCmd(this));
 		getCommand("fief").setExecutor(new FiefCmd(this));

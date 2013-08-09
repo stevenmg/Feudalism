@@ -11,10 +11,12 @@ public class FiefCmd implements CommandExecutor{
 	public FiefCmd(Fuedalism fuedalism) {}
 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args){
-		if(args[0].equalsIgnoreCase("create")){
-			FiefCreate.execute(sender, args);
-		} else if(args[0].equalsIgnoreCase("abandon")){
-			FiefAbandon.execute(sender, args);
+		if(args.length > 0){
+			if(args[0].equalsIgnoreCase("create")){
+				FiefCreate.execute(sender, args);
+			} else if(args[0].equalsIgnoreCase("abandon")){
+				FiefAbandon.execute(sender, args);
+			}
 		}
 		return true;
 	}

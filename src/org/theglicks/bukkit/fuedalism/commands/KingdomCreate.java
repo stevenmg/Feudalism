@@ -14,11 +14,15 @@ public class KingdomCreate {
 		Vassal v = new Vassal(sender.getName());
 		Player p = (Player) sender;
 		
+		//Makes sure the player isn't already part of a kingdom
+		if (v.hasKingdom()) return;
+		
 		if(v.canCreateKingdom()){
 			if(args.length == 2){
 				if(Fuedalism.econ.getBalance(p.getName(), p.getWorld().getName()) >= Fuedalism.mainConfig.getConfig().getDouble("Economy.costToCreateKingdom")){
 					Fuedalism.econ.withdrawPlayer(p.getName(), p.getWorld().getName(), Fuedalism.mainConfig.getConfig().getDouble("Economy.costToCreateKingdom"));
-					Kingdom.createKingdom(args[1], sender.getName());
+					v.setKingdom(Kingdom.createKingdom(args[1], sender.getName()));
+					v.setLeader(true);
 				}
 			} else {
 				p.sendMessage("Check correct command usage!");

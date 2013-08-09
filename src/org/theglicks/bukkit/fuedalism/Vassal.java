@@ -124,10 +124,24 @@ public class Vassal{
 		return false;
 	}
 	
-	public void join(Kingdom k){
+	public void setKingdom(Kingdom k){
 		try {
 			DataStore ds = new DataStore();
-			ds.st.execute("UPDATE `fuedalism`.`vassals` SET `kingdom`='" + k.getId() + "', `leader`=0 WHERE `id`='" + getId() + "';");
+			ds.st.execute("UPDATE `fuedalism`.`vassals` SET `kingdom`='" + k.getId() + "' WHERE `id`='" + getId() + "';");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void setLeader(boolean arg){
+		try {
+			DataStore ds = new DataStore();
+			int bool;
+			if (arg)
+				bool = 1;
+			else
+				bool = 0;
+			ds.st.execute("UPDATE `fuedalism`.`vassals` SET `leader`=" + bool + " WHERE `id`='" + getId() + "';");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

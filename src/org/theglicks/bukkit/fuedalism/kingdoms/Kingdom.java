@@ -115,4 +115,13 @@ public class Kingdom {
 			e.printStackTrace();
 		}
 	}
+	
+	public void delete(){
+		try {
+			DataStore ds = new DataStore();
+			ds.st.execute("DELETE FROM `fuedalism`.`kingdoms` WHERE `id`='" + getId() + "';");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

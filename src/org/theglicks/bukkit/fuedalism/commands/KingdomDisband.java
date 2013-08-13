@@ -11,7 +11,15 @@ public class KingdomDisband {
 		
 		Vassal v = new Vassal(sender.getName());
 		
-		if(v.getKingdom().getOwner() == v.getPlayer())
-			v.getKingdom().delete();
+		//Makes sure the player is in a kingdom
+		if(!v.hasKingdom()) return;
+		
+		//Makes sure the player is the leader of their kingdom
+		if(!(v.getKingdom().getOwner() == v.getPlayer())) return;
+		
+		//Deletes the kingdom
+		v.getKingdom().delete();
+		v.setKingdom(null);
+		v.setLeader(false);
 	}
 }

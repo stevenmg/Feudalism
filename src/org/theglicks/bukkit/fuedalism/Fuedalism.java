@@ -34,7 +34,7 @@ public class Fuedalism extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new PlayerMove(), this);
 		getServer().getPluginManager().registerEvents(new BlockBreak(), this);
 		getServer().getPluginManager().registerEvents(new BlockPlace(), this);
-		getServer().getPluginManager().registerEvents(new InventoryOpen(), this);
+		//getServer().getPluginManager().registerEvents(new InventoryOpen(), this);
 		getServer().getPluginManager().registerEvents(new EntityDamageByEntity(), this);
 		getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
 		getServer().getPluginManager().registerEvents(new CommandPreprocess(), this);

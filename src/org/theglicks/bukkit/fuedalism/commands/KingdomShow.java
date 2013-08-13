@@ -12,11 +12,14 @@ public class KingdomShow {
 		
 		Vassal v = new Vassal(sender.getName());
 		Player p = (Player) sender;
+		
+		//Creates a kingdom object and assigns it depending on how the command is being used
 		Kingdom k;
 		if(args.length == 2)
 			k = new Kingdom(args[1]);	
-		else
+		else if(v.hasKingdom())
 			k = v.getKingdom();
+		else return;
 		
 		StringBuilder members = new StringBuilder();
 		for(String name: k.getMembers()){

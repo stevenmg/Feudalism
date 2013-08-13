@@ -11,18 +11,15 @@ public class KingdomAlly {
 		if (!(sender instanceof Player)) return;
 		
 		Vassal v = new Vassal(sender.getName());
-		Player p = (Player) sender;
 		
-		if(args.length == 2){
-			Kingdom kSender = v.getKingdom();
-			Kingdom kReceiver = new Kingdom(args[1]);
-			if(kSender.hasAllyRequest(kReceiver) && !(kSender.getRelation(kReceiver) == 1)){
-				kSender.setRelation(kReceiver, 1);
-			} else if(!kReceiver.hasAllyRequest(kSender)){
-				kSender.sendAllyRequest(kReceiver);
-			}	
-		} else {
-			p.sendMessage("Look up the correct command usage!");
-		}
+		//Makes sure player has specified a kingdom
+		if(!(args.length == 2)) return;
+			
+		Kingdom kSender = v.getKingdom();
+		Kingdom kReceiver = new Kingdom(args[1]);
+		if(kSender.hasAllyRequest(kReceiver) && !(kSender.getRelation(kReceiver) == 1))
+			kSender.setRelation(kReceiver, 1);
+		else if(!kReceiver.hasAllyRequest(kSender))
+			kSender.sendAllyRequest(kReceiver);
 	}
 }

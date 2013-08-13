@@ -11,7 +11,6 @@ import org.theglicks.bukkit.fuedalism.eventListeners.BlockBreak;
 import org.theglicks.bukkit.fuedalism.eventListeners.BlockPlace;
 import org.theglicks.bukkit.fuedalism.eventListeners.CommandPreprocess;
 import org.theglicks.bukkit.fuedalism.eventListeners.EntityDamageByEntity;
-import org.theglicks.bukkit.fuedalism.eventListeners.InventoryOpen;
 import org.theglicks.bukkit.fuedalism.eventListeners.PlayerInteract;
 import org.theglicks.bukkit.fuedalism.eventListeners.PlayerJoin;
 import org.theglicks.bukkit.fuedalism.eventListeners.PlayerMove;

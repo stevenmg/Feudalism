@@ -13,14 +13,14 @@ public class KingdomLandClaim extends Claim {
 	
 	public KingdomLandClaim(Location loc){
 		try {
-			cData.rs = cData.st.executeQuery("SELECT * FROM `kingdomclaims` WHERE MBRCONTAINS("
+			cData.rs = cData.st.executeQuery("SELECT * FROM `fuedalism`.`kingdomclaims` WHERE MBRCONTAINS("
 					+ "`region`, POINT(" + loc.getX() + "," + loc.getZ() + "))"
 					+ " AND `world` = '" + loc.getWorld().getName() + "';");
 			cData.rs.first();
 			
 			if (exists()) {
 				int kId = cData.rs.getInt("kingdom");
-				kData.rs = kData.st.executeQuery("SELECT `name` FROM `kingdoms` WHERE `id` = " + kId + ";");
+				kData.rs = kData.st.executeQuery("SELECT `name` FROM `fuedalism`.`kingdoms` WHERE `id` = " + kId + ";");
 				kData.rs.first();
 				kingdom = new Kingdom(kData.rs.getString("name"));
 			}
@@ -33,7 +33,7 @@ public class KingdomLandClaim extends Claim {
 		try {
 			DataStore cOwner = new DataStore();
 			DataStore cData = new DataStore();
-			cOwner.rs = cOwner.st.executeQuery("SELECT `id` FROM `kingdoms` WHERE `name` = '" + k.getName() + "';");
+			cOwner.rs = cOwner.st.executeQuery("SELECT `id` FROM `fuedalism`.`kingdoms` WHERE `name` = '" + k.getName() + "';");
 			cOwner.rs.first();
 			String kId = cOwner.rs.getString("id");
 			cData.st.execute("INSERT INTO `fuedalism`.`kingdomclaims` (" +

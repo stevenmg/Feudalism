@@ -1,5 +1,9 @@
 package org.theglicks.bukkit.fuedalism;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -18,7 +22,7 @@ public class DataStore {
 	public void initialize(){
 		try {
 			if (conn == null){
-				conn = DriverManager.getConnection("jdbc:mysql://" +
+				conn = DriverManager.getConnection(
 						Fuedalism.mainConfig.getConfig().getString("DataStore.databaseURL"),
 						Fuedalism.mainConfig.getConfig().getString("DataStore.user"),
 						Fuedalism.mainConfig.getConfig().getString("DataStore.password"));
@@ -26,6 +30,37 @@ public class DataStore {
 			
 			st = conn.createStatement();
 		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void verifyDB(){
+		try {
+			//Checks if the database exists
+			DataStore ds = new DataStore();
+			ds.rs = ds.st.executeQuery("SELECT SCHEMA_NAME FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'fuedalism'");
+			if(ds.rs.first()) return;
+			
+			//Creates it if not
+			InputStream is = ds.getClass().getResourceAsStream("/script.sql");
+			InputStreamReader sr = new InputStreamReader(is);
+			BufferedReader br = new BufferedReader(sr);
+			StringBuilder sql = new StringBuilder();
+			String line;
+			
+			while((line = br.readLine()) != null){
+				sql.append(line);
+			}
+			
+			ds.st.execute("CREATE DATABASE `fuedalism`;");
+			ds.st.execute("USE fuedalism;");
+			
+			for(String section: sql.toString().split("#")){
+				ds.st.execute(section);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}

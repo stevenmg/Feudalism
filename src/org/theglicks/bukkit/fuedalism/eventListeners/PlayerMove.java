@@ -30,7 +30,7 @@ public class PlayerMove implements Listener{
 			if(f.exists()){
 				Fief f1 = new Fief(event.getFrom());
 				if(!f1.exists()){
-					event.getPlayer().sendMessage("You are now in " + f.getOwner() + "'s fief");
+					event.getPlayer().sendMessage("You are now in " + f.getOwnerName() + "'s fief");
 				}
 			}
 		}

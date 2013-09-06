@@ -29,11 +29,12 @@ public class Fuedalism extends JavaPlugin{
 		mainConfig.saveDefaultConfig();
 		mainConfig.getConfig().options().copyDefaults(true);
 		
+		DataStore.verifyDB();
+		
 		getServer().getPluginManager().registerEvents(new PlayerInteract(), this);
 		getServer().getPluginManager().registerEvents(new PlayerMove(), this);
 		getServer().getPluginManager().registerEvents(new BlockBreak(), this);
 		getServer().getPluginManager().registerEvents(new BlockPlace(), this);
-		//getServer().getPluginManager().registerEvents(new InventoryOpen(), this);
 		getServer().getPluginManager().registerEvents(new EntityDamageByEntity(), this);
 		getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
 		getServer().getPluginManager().registerEvents(new CommandPreprocess(), this);

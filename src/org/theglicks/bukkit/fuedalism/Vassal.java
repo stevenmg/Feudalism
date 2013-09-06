@@ -16,7 +16,7 @@ public class Vassal{
 	public Vassal(String vassalName){
 		try {
 			name = vassalName;
-			vData.rs = vData.st.executeQuery("SELECT * FROM `vassals` WHERE `name` = '" + name + "';");
+			vData.rs = vData.st.executeQuery("SELECT * FROM `fuedalism`.`vassals` WHERE `name` = '" + name + "';");
 			vData.rs.first();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -26,7 +26,7 @@ public class Vassal{
 	public Kingdom getKingdom(){
 		try {
 			DataStore ds = new DataStore();
-			ds.rs = ds.st.executeQuery("SELECT `name` FROM `kingdoms` WHERE `id` = " + vData.rs.getInt("kingdom") + ";");
+			ds.rs = ds.st.executeQuery("SELECT `name` FROM `fuedalism`.`kingdoms` WHERE `id` = " + vData.rs.getInt("kingdom") + ";");
 			ds.rs.first();
 			
 			return new Kingdom(ds.rs.getString("name"));
@@ -84,13 +84,12 @@ public class Vassal{
 	
 	public boolean hasKingdom(){
 		try {
-			if(((Integer)vData.rs.getInt("kingdom")) == null){
-				return false;
-			} return true;
+			vData.rs.getInt("kingdom");
+			if(vData.rs.wasNull()) return false;
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return false;
+		return true;
 	}
 	
 	public boolean isLeader(){
@@ -115,7 +114,8 @@ public class Vassal{
 	public boolean hasInvite(Kingdom k){
 		try {
 			DataStore ds = new DataStore();
-			ds.rs = ds.st.executeQuery("SELECT * FROM `invitations` WHERE `kingdom` = " + k.getId() + " AND `vassal` = " + getId());
+			ds.rs = ds.st.executeQuery("SELECT * FROM `fuedalism`.`invitations` WHERE `kingdom` = " + k.getId() + " AND `vassal` = "
+					+ getId());
 			if(ds.rs.next()) return true;
 		} catch (SQLException e) {
 			e.printStackTrace();

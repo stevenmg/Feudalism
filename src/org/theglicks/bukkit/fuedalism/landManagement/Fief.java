@@ -2,21 +2,20 @@ package org.theglicks.bukkit.fuedalism.landManagement;
 
 import java.sql.SQLException;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.DataStore;
 import org.theglicks.bukkit.fuedalism.Vassal;
 
 public class Fief  extends Claim {
-	Player owner;
+	String owner;
 	DataStore fiefData;
 	DataStore fiefOwner;
 	
 	public Fief(Location loc){
 		try {
 			fiefData = new DataStore();
-			fiefData.rs = fiefData.st.executeQuery("SELECT * FROM `fiefs` WHERE MBRCONTAINS("
+			fiefData.rs = fiefData.st.executeQuery("SELECT * FROM `fuedalism`.`fiefs` WHERE MBRCONTAINS("
 					+ "`region`, POINT(" + loc.getX() + "," + loc.getZ() + "))"
 					+ " AND `world` = '" + loc.getWorld().getName() + "';");
 			fiefData.rs.first();
@@ -24,10 +23,9 @@ public class Fief  extends Claim {
 			if (exists()) {
 				int ownId = fiefData.rs.getInt("vassal");
 				fiefOwner = new DataStore();
-				fiefOwner.rs = fiefOwner.st.executeQuery("SELECT `name` FROM `vassals` "
-								+ "WHERE `id` = " + ownId + ";");
+				fiefOwner.rs = fiefOwner.st.executeQuery("SELECT `name` FROM `fuedalism`.`vassals` WHERE `id` = " + ownId + ";");
 				fiefOwner.rs.first();
-				owner = Bukkit.getPlayer(fiefOwner.rs.getString("name"));
+				owner = fiefOwner.rs.getString("name");
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -38,12 +36,10 @@ public class Fief  extends Claim {
 		try {
 			DataStore fOwner = new DataStore();
 			DataStore fData = new DataStore();
-			fOwner.rs = fOwner.st.executeQuery("SELECT `id` FROM `vassals` " +
-					"WHERE `name` = '" + own.getName() + "';");
+			fOwner.rs = fOwner.st.executeQuery("SELECT `id` FROM `fuedalism`.`vassals` WHERE `name` = '" + own.getName() + "';");
 			fOwner.rs.first();
 			String ownId = fOwner.rs.getString("id");
-			fData.st.execute("INSERT INTO `fuedalism`.`fiefs` (" +
-					"`region`, `vassal`, `world`) VALUES (PolygonFromText('POLYGON((" + 
+			fData.st.execute("INSERT INTO `fuedalism`.`fiefs` (`region`, `vassal`, `world`) VALUES (PolygonFromText('POLYGON((" + 
 					corner.getX() + " " + corner.getZ() + ", " +
 					corner0.getX() + " " + corner0.getZ() + ", " +
 					corner.getX() + " " + corner0.getZ() + ", " +
@@ -77,6 +73,10 @@ public class Fief  extends Claim {
 	}
 	
 	public Vassal getOwner(){
-		return new Vassal(owner.getName());
+		return new Vassal(owner);
+	}
+	
+	public String getOwnerName(){
+		return owner;
 	}
 }

@@ -4,7 +4,7 @@
 DataStore:
   user: root #Username for the database
   password: pass #Password for the user
-  databaseURL: localhost:3306/fuedalism #URL of the database || template: [IP]:[PORT]/[DATABASE]
+  databaseURL: jdbc:mysql://localhost:3306/ #URL of the database || template: jdbc:mysql://[IP]:[PORT]/
   
 AllyRequest:
   daysToExpire: 7 #Sets how soon alliance requests expire

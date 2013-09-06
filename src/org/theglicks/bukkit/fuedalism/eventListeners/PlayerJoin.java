@@ -13,7 +13,7 @@ public class PlayerJoin implements Listener{
 		//Makes sure player is in the database and adds them if not
 		try {
 			DataStore ds = new DataStore();
-			ds.rs = ds.st.executeQuery("SELECT * FROM `vassals` WHERE `name` = '" + event.getPlayer().getName() + "'");
+			ds.rs = ds.st.executeQuery("SELECT * FROM `fuedalism`.`vassals` WHERE `name` = '" + event.getPlayer().getName() + "'");
 			
 			if(!ds.rs.next()) {
 				ds.st.execute("INSERT INTO `fuedalism`.`vassals` (`name`) VALUES ('" + event.getPlayer().getName() + "');");

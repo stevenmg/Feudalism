@@ -19,7 +19,7 @@ public class KingdomDisband {
 		
 		//Deletes the kingdom
 		v.getKingdom().delete();
-		v.setKingdom(null);
+		//v.setKingdom(null);
 		v.setLeader(false);
 	}
 }

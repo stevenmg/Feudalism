@@ -16,8 +16,8 @@ CREATE TABLE `vassals` (
   UNIQUE KEY `id_UNIQUE` (`id`),
   UNIQUE KEY `name_UNIQUE` (`name`),
   KEY `kingdom_idx` (`kingdom`),
-  CONSTRAINT `kingdom` FOREIGN KEY (`kingdom`) REFERENCES `kingdoms` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  CONSTRAINT `kingdom` FOREIGN KEY (`kingdom`) REFERENCES `kingdoms` (`id`) ON DELETE SET NULL ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 #
 CREATE TABLE `relations` (
   `id` int(11) NOT NULL AUTO_INCREMENT,

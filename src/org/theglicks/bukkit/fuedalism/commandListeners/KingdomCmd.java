@@ -12,6 +12,7 @@ import org.theglicks.bukkit.fuedalism.commands.KingdomDisband;
 import org.theglicks.bukkit.fuedalism.commands.KingdomEnemy;
 import org.theglicks.bukkit.fuedalism.commands.KingdomInvite;
 import org.theglicks.bukkit.fuedalism.commands.KingdomJoin;
+import org.theglicks.bukkit.fuedalism.commands.KingdomKick;
 import org.theglicks.bukkit.fuedalism.commands.KingdomShow;
 
 public class KingdomCmd implements CommandExecutor{
@@ -37,6 +38,8 @@ public class KingdomCmd implements CommandExecutor{
 				KingdomJoin.execute(sender, args);
 			else if(args[0].equalsIgnoreCase("disband"))
 				KingdomDisband.execute(sender, args);
+			else if(args[0].equalsIgnoreCase("kick"))
+				KingdomKick.execute(sender, args);		
 		}
 		return true;
 	}

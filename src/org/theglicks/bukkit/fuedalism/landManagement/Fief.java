@@ -32,6 +32,24 @@ public class Fief  extends Claim {
 		}
 	}
 	
+	public Fief(LandSelection select){
+		try {
+			fiefData = new DataStore();
+			fiefData.rs = fiefData.st.executeQuery("SELECT * FROM `fuedalism`.`fiefs` WHERE MBRIntersects(" + select.getPolygonText() + ", `region`)");
+			fiefData.rs.first();
+			
+			if (exists()) {
+				int ownId = fiefData.rs.getInt("vassal");
+				fiefOwner = new DataStore();
+				fiefOwner.rs = fiefOwner.st.executeQuery("SELECT `name` FROM `fuedalism`.`vassals` WHERE `id` = " + ownId + ";");
+				fiefOwner.rs.first();
+				owner = fiefOwner.rs.getString("name");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static Fief create(Location corner, Location corner0, Player own){
 		try {
 			DataStore fOwner = new DataStore();

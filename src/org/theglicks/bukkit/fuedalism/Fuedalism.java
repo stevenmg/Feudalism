@@ -39,6 +39,8 @@ public class Fuedalism extends JavaPlugin{
 		getServer().getPluginManager().registerEvents(new PlayerJoin(), this);
 		getServer().getPluginManager().registerEvents(new CommandPreprocess(), this);
 		
+		Messages.loadMessages(this);
+		
 		RegisteredServiceProvider<Economy> econProvider = getServer().getServicesManager().getRegistration(Economy.class);
 		if(econProvider != null)
 			econ = econProvider.getProvider();

@@ -29,6 +29,23 @@ public class KingdomLandClaim extends Claim {
 		}
 	}
 	
+	public KingdomLandClaim(LandSelection select){
+		try {
+			cData.rs = cData.st.executeQuery("SELECT * FROM `fuedalism`.`kingdomclaims` WHERE MBRIntersects(" + select.getPolygonText()
+					+ ", `region`)");
+			cData.rs.first();
+			
+			if (exists()) {
+				int kId = cData.rs.getInt("kingdom");
+				kData.rs = kData.st.executeQuery("SELECT `name` FROM `fuedalism`.`kingdoms` WHERE `id` = " + kId + ";");
+				kData.rs.first();
+				kingdom = new Kingdom(kData.rs.getString("name"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static KingdomLandClaim create(Location corner, Location corner0, Kingdom k){
 		try {
 			DataStore cOwner = new DataStore();

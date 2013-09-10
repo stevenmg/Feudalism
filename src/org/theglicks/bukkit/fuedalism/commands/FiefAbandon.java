@@ -15,7 +15,7 @@ public class FiefAbandon {
 		Fief f = new Fief(p.getLocation());
 		
 		if(f.exists()){
-			if(f.getOwner() == v){
+			if(f.getOwnerName().equals(v.getName())){
 				f.delete();
 				p.sendMessage("Fief abandoned!");
 			} else {

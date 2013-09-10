@@ -50,16 +50,15 @@ public class Vassal{
 	public boolean canBuild(Claim claim){
 		if(claim instanceof Fief){
 			Fief f = (Fief) claim;
-			if(f.getOwner() == Bukkit.getPlayer(name)){
-				return true;
-			} return false;
+			if(!(f.getOwnerName().equals(name))) return false;
 		} else if (claim instanceof KingdomLandClaim){
 			KingdomLandClaim c = (KingdomLandClaim) claim;
-			if(c.getKingdom() == getKingdom()){
-				return true;
-			} return false;
+			
+			if(!(hasKingdom())) return false;
+			
+			if(!(c.getKingdom().getName().equals(getKingdom().getName()))) return false;
 		}
-		return false;
+		return true;
 	}
 	
 	public boolean canBuild(Location loc){
@@ -67,11 +66,11 @@ public class Vassal{
 		Fief f = new Fief(loc);
 		
 		if(c.exists()){
-			if(!canBuild(c)) return false;
+			return canBuild(c);
 		}
 		
 		if(f.exists()){
-			if(!canBuild(f)) return false;
+			return canBuild(f);
 		}
 		return true;
 	}
@@ -127,6 +126,15 @@ public class Vassal{
 		try {
 			DataStore ds = new DataStore();
 			ds.st.execute("UPDATE `fuedalism`.`vassals` SET `kingdom`='" + k.getId() + "' WHERE `id`='" + getId() + "';");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public void removeKingdom(){
+		try {
+			DataStore ds = new DataStore();
+			ds.st.execute("UPDATE `fuedalism`.`vassals` SET `kingdom`= null WHERE `id`='" + getId() + "';");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

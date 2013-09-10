@@ -20,10 +20,49 @@ public class LandSelection {
 	}
 	
 	public boolean canCreateClaim(){
-		if(point1.distance(point2) >= 15){
-			return true;
-		} return false;
+		//Checks size
+		if(!(point1.distance(point2) >= 15)) return false;
+				
+		//Checks if it crosses another kingdom claim
+		KingdomLandClaim k = new KingdomLandClaim(this);
+		if(k.exists()) return false;
+		
+		//Checks if it crosses a fief
+		Fief f = new Fief(this);
+		if(f.exists()) return false;
+				
+		return true;
 	}
+	
+	/*public boolean canCreateKingdomClaim(){
+		//Checks size
+		if(!(point1.distance(point2) >= 15)) return false;
+		
+		//Checks if it crosses another kingdom claim
+		KingdomLandClaim k = new KingdomLandClaim(this);
+		if(k.exists()) return false;
+		
+		//Checks if it crosses a fief
+		Fief f = new Fief(this);
+		if(f.exists()) return false;
+		
+		return true;
+	}
+	
+	public boolean canCreateFief(){
+		//Checks size
+		if(!(point1.distance(point2) >= 15)) return false;
+		
+		//Checks if it crosses another kingdom claim
+		KingdomLandClaim k = new KingdomLandClaim(this);
+		if(k.exists()) return false;
+				
+		//Checks if it crosses a fief
+		Fief f = new Fief(this);
+		if(f.exists()) return false;
+		
+		return true;
+	} */
 	
 	public Fief getFief(){
 		return Fief.create(point1, point2, Bukkit.getPlayer(playerName));
@@ -58,5 +97,11 @@ public class LandSelection {
 		loc1.setY(0);
 		
 		return (int) (loc0.distance(loc1) * loc1.distance(loc2));
+	}
+	
+	public String getPolygonText(){
+		return "PolygonFromText('POLYGON((" + point1.getX() + " " + point1.getZ() + ", " +
+				point2.getX() + " " + point2.getZ() + ", " + point1.getX() + " " + point2.getZ() + ", " +
+				point2.getX() + " " + point1.getZ() + ", " + point1.getX() + " " + point1.getZ() + "))')";
 	}
 }

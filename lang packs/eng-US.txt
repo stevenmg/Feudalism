@@ -1,0 +1,6 @@
+claimEnter::You have entered %$%'s claim
+fiefEnter::You have entered %$%'s fief
+kingdomJoin::You have joined %$%
+noInvite::You have not been invited to join %$%
+cmdBlockedInClaim::You cannot execute that command while in enemy land!
+cmdBlockedNearPlayer::You cannot execute that command near enemy players!

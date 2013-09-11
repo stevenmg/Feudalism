@@ -7,7 +7,6 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 
-import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class Messages {
@@ -22,7 +21,6 @@ public class Messages {
 			String line;
 			while((line = reader.readLine()) != null){
 				messages.put(line.split("::")[0], line.split("::")[1]);
-				Bukkit.getLogger().info(line.split("::")[0] + "::" + line.split("::")[1]);
 			}
 			reader.close();
 		} catch (FileNotFoundException e) {
@@ -30,5 +28,9 @@ public class Messages {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public static String getMessage(String messageName, String args){
+		return messages.get(messageName).replace("%$%", args);
 	}
 }

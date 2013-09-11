@@ -23,11 +23,11 @@ public class KingdomShow {
 		
 		StringBuilder members = new StringBuilder();
 		for(String name: k.getMembers()){
-			if(!name.equals(k.getOwner().getName()))
+			if(!name.equals(k.getOwner()))
 				members.append(name);
 		}
 		p.sendMessage("Name: " + k.getName());
-		p.sendMessage("Owner: " + k.getOwner().getName());
+		p.sendMessage("Owner: " + k.getOwner());
 		p.sendMessage("Members: " + members.toString());
 	}
 }

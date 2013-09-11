@@ -11,10 +11,14 @@ AllyRequest:
 
 CommandBlocking:
   blockedInEnemyClaim: #List of commands blocked inside enemy claims
-    - f
+    - sethome
+    - home
+    - tp
   blockDistanceNearPlayer: 20 #Distance a player needs to be from enemy players to use blocked commands
   blockedNearEnemyPlayer: #List of commands blocked near enemy players
-    - f
+    - sethome
+    - home
+    - tp
     
 LandClaims:
   blockInteractInClaims: #Item id's of items that players cannot interact with in other claims

@@ -15,7 +15,7 @@ public class KingdomDisband {
 		if(!v.hasKingdom()) return;
 		
 		//Makes sure the player is the leader of their kingdom
-		if(!(v.getKingdom().getOwner() == v.getPlayer())) return;
+		if(!(v.getKingdom().getOwner().equals(v.getPlayer().getName()))) return;
 		
 		//Deletes the kingdom
 		v.getKingdom().delete();

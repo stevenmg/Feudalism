@@ -3,6 +3,7 @@ package org.theglicks.bukkit.fuedalism.commands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.Kingdom;
+import org.theglicks.bukkit.fuedalism.Messages;
 import org.theglicks.bukkit.fuedalism.Vassal;
 
 public class KingdomJoin {
@@ -17,9 +18,13 @@ public class KingdomJoin {
 		
 		if(args.length == 2){
 			Kingdom k = new Kingdom(args[1]);
-			if(v.hasInvite(k))
+			if(v.hasInvite(k)){
 				v.setKingdom(k);
 				v.setLeader(false);
+				sender.sendMessage(Messages.getMessage("kingdomJoin", k.getName()));
+			} else {
+				sender.sendMessage(Messages.getMessage("noInvite", k.getName()));
+			}
 		}
 	}
 }

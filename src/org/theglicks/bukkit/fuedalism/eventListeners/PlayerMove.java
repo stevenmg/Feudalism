@@ -3,6 +3,7 @@ package org.theglicks.bukkit.fuedalism.eventListeners;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.theglicks.bukkit.fuedalism.Messages;
 import org.theglicks.bukkit.fuedalism.landManagement.Fief;
 import org.theglicks.bukkit.fuedalism.landManagement.KingdomLandClaim;
 
@@ -21,7 +22,7 @@ public class PlayerMove implements Listener{
 			if (claim.exists()){
 				KingdomLandClaim claim1 = new KingdomLandClaim(event.getFrom());
 				if(!claim1.exists()){
-					event.getPlayer().sendMessage("You are now in " + claim.getKingdom().getName() + "'s claim");
+					event.getPlayer().sendMessage(Messages.getMessage("claimEnter", claim.getKingdom().getName()));
 				}
 			}
 		
@@ -30,7 +31,7 @@ public class PlayerMove implements Listener{
 			if(f.exists()){
 				Fief f1 = new Fief(event.getFrom());
 				if(!f1.exists()){
-					event.getPlayer().sendMessage("You are now in " + f.getOwnerName() + "'s fief");
+					event.getPlayer().sendMessage(Messages.getMessage("fiefEnter", f.getOwnerName()));
 				}
 			}
 		}

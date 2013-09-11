@@ -9,7 +9,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 public class Kingdom {
-	private Player owner;
+	private String owner;
 	private String name;
 	private DataStore kData = new DataStore();
 	private int id;
@@ -24,7 +24,7 @@ public class Kingdom {
 			DataStore oName = new DataStore();
 			oName.rs = oName.st.executeQuery("SELECT `name` FROM `fuedalism`.`vassals` WHERE `id` = " + kData.rs.getInt("owner") + ";");
 			oName.rs.first();
-			owner = Bukkit.getPlayer(oName.rs.getString("name"));
+			owner = oName.rs.getString("name");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -32,9 +32,9 @@ public class Kingdom {
 	
 	public Kingdom(Player kOwner){
 		try {
-			owner = kOwner;
+			owner = kOwner.getName();
 			DataStore oID = new DataStore();
-			oID.rs = oID.st.executeQuery("SELECT `id` FROM `fuedalism`.`vassals` WHERE `name` = '" + owner.getName() + "';");
+			oID.rs = oID.st.executeQuery("SELECT `id` FROM `fuedalism`.`vassals` WHERE `name` = '" + owner + "';");
 			oID.rs.first();
 			kData.rs = kData.st.executeQuery("SELECT * FROM `fuedalism`.`kingdoms` WHERE `owner` = " + oID.rs.getInt("id") + ";");
 			kData.rs.first();
@@ -86,7 +86,7 @@ public class Kingdom {
 		} return null;
 	}
 	
-	public Player getOwner(){
+	public String getOwner(){
 		return owner;
 	}
 	

@@ -6,6 +6,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.theglicks.bukkit.fuedalism.Fuedalism;
+import org.theglicks.bukkit.fuedalism.Messages;
 import org.theglicks.bukkit.fuedalism.Vassal;
 import org.theglicks.bukkit.fuedalism.landManagement.Fief;
 import org.theglicks.bukkit.fuedalism.landManagement.KingdomLandClaim;
@@ -24,6 +25,7 @@ public class CommandPreprocess implements Listener{
 			if(c.exists()){
 				if(v.getKingdom().getRelation(c.getKingdom()) == 2){
 					event.setCancelled(true);
+					event.getPlayer().sendMessage(Messages.getMessage("cmdBlockedInClaim", c.getKingdom().getName()));
 					return;
 				}
 			}
@@ -31,6 +33,7 @@ public class CommandPreprocess implements Listener{
 			if(f.exists()){
 				if(v.getKingdom().getRelation(f.getOwner().getKingdom()) == 2){
 					event.setCancelled(true);
+					event.getPlayer().sendMessage(Messages.getMessage("cmdBlockedInClaim", f.getOwnerName()));
 					return;
 				}
 			}
@@ -43,6 +46,7 @@ public class CommandPreprocess implements Listener{
 					Vassal vassal = new Vassal(((Player) ent).getName());
 					if(v.getKingdom().getRelation(vassal.getKingdom()) == 2){
 						event.setCancelled(true);
+						event.getPlayer().sendMessage(Messages.getMessage("cmdBlockedNearPlayer", vassal.getName()));
 						return;
 					}
 				}

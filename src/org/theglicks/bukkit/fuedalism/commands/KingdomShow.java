@@ -3,6 +3,7 @@ package org.theglicks.bukkit.fuedalism.commands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.Kingdom;
+import org.theglicks.bukkit.fuedalism.Messages;
 import org.theglicks.bukkit.fuedalism.Vassal;
 
 public class KingdomShow {
@@ -19,7 +20,10 @@ public class KingdomShow {
 			k = new Kingdom(args[1]);	
 		else if(v.hasKingdom())
 			k = v.getKingdom();
-		else return;
+		else {
+			sender.sendMessage(Messages.getMessage("incorrectCmdUsage", null));
+			return;
+		}
 		
 		StringBuilder members = new StringBuilder();
 		for(String name: k.getMembers()){

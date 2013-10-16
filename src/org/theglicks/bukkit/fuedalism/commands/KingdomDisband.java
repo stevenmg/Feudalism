@@ -2,6 +2,7 @@ package org.theglicks.bukkit.fuedalism.commands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.theglicks.bukkit.fuedalism.Messages;
 import org.theglicks.bukkit.fuedalism.Vassal;
 
 public class KingdomDisband {
@@ -12,14 +13,22 @@ public class KingdomDisband {
 		Vassal v = new Vassal(sender.getName());
 		
 		//Makes sure the player is in a kingdom
-		if(!v.hasKingdom()) return;
+		if(!v.hasKingdom()){
+			sender.sendMessage(Messages.getMessage("notInAnyKingdom", null));
+			return;
+		}
 		
-		//Makes sure the player is the leader of their kingdom
-		if(!(v.getKingdom().getOwner().equals(v.getPlayer().getName()))) return;
+		//Makes sure the player is the owner of their kingdom
+		if(!(v.getKingdom().getOwner().equals(v.getPlayer().getName()))){
+			sender.sendMessage(Messages.getMessage("mustBeKOwner", null));
+			return;
+		}
 		
 		//Deletes the kingdom
 		v.getKingdom().delete();
 		//v.setKingdom(null);
 		v.setLeader(false);
+		
+		sender.sendMessage(Messages.getMessage("kingdomDisbanded", null));
 	}
 }

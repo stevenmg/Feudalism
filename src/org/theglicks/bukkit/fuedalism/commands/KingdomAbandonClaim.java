@@ -2,6 +2,7 @@ package org.theglicks.bukkit.fuedalism.commands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.theglicks.bukkit.fuedalism.Messages;
 import org.theglicks.bukkit.fuedalism.Vassal;
 import org.theglicks.bukkit.fuedalism.landManagement.KingdomLandClaim;
 
@@ -17,7 +18,7 @@ public class KingdomAbandonClaim {
 			KingdomLandClaim claim = new KingdomLandClaim(p.getLocation());
 			claim.delete();
 		} else {
-			p.sendMessage("You cannot abandon this claim!");
+			p.sendMessage(Messages.getMessage("mustBeLeader", null));
 		}
 	}
 }

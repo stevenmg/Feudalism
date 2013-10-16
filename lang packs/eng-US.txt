@@ -2,5 +2,28 @@ claimEnter::You have entered %$%'s claim
 fiefEnter::You have entered %$%'s fief
 kingdomJoin::You have joined %$%
 noInvite::You have not been invited to join %$%
-cmdBlockedInClaim::You cannot execute that command while in enemy land!
-cmdBlockedNearPlayer::You cannot execute that command near enemy players!
+cmdBlockedInClaim::You cannot execute that command while in enemy land
+cmdBlockedNearPlayer::You cannot execute that command near enemy players
+invalidCmd::That is not a valid command -- Use /fuedalism help
+incorrectCmdUsage::You have used the command wrong -- Use /fuedalism help
+fiefAbandoned::Fief abandoned successfully
+notOwnerFief::You do not own this fief
+noFiefAtLocation::Fief does not exist at your location
+fiefCreated::Fief created successfully
+notEnoughMoney::You do not have enough money to complete this action -- cost:%$%
+mustBeLeader::You must be a kingdom leader to perform this action
+alreadyAllied::You are already allies with %$%
+allyRequestSent::Alliance request successfully sent to %$%
+selectLand::You must select land before doing this
+kClaimCreated::Successfully claimed land for the kingdom
+noPermission::You do not have permission to perform this action
+notInAnyKingdom::You are not in a kingdom
+mustBeKOwner::You must be the owner of the kingdom to do this
+kingdomDisbanded::Kingdom disbanded successfully
+nowEnemy::You are now enemy with %$%
+playerInvited::%$% has been invited to your kingdom
+alreadyInKingdom::You are already in a kingdom
+notInSameKingdom::You are not in the same kingdom as %$%
+buildDeny::You cannot build here
+hitPlayerDeny::You cannot hit that player
+cannotInteract::You cannot interact with this block

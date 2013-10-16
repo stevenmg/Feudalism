@@ -3,6 +3,7 @@ package org.theglicks.bukkit.fuedalism.commands;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.theglicks.bukkit.fuedalism.Fuedalism;
+import org.theglicks.bukkit.fuedalism.Messages;
 import org.theglicks.bukkit.fuedalism.landManagement.SelectionManager;
 
 public class FiefCreate {
@@ -17,8 +18,12 @@ public class FiefCreate {
 			if(Fuedalism.econ.has(p.getName(), p.getWorld().getName(), cost)){
 				Fuedalism.econ.withdrawPlayer(p.getName(), p.getWorld().getName(), cost);
 				SelectionManager.getFief(p);
-				p.sendMessage("Fief created Successfully!");
+				p.sendMessage(Messages.getMessage("fiefCreated", null));
+			} else {
+				p.sendMessage(Messages.getMessage("notEnoughMoney", ((Integer) cost).toString()));
 			}
+		} else {
+			p.sendMessage(Messages.getMessage("selectLand", null));
 		}
 	}
 }

@@ -11,20 +11,26 @@ public class KingdomJoin {
 		//Make sure command is being executed by a player
 		if (!(sender instanceof Player)) return;
 		
+		if(!(args.length == 2)){
+			sender.sendMessage(Messages.getMessage("incorrectCmdUsage", null));
+			return;
+		}
+		
 		Vassal v = new Vassal(sender.getName());
 		
 		//Makes sure the player isn't already in a kingdom
-		if (v.hasKingdom()) return;
+		if (v.hasKingdom()){
+			sender.sendMessage(Messages.getMessage("alreadyInKingdom", null));
+			return;
+		}
 		
-		if(args.length == 2){
-			Kingdom k = new Kingdom(args[1]);
-			if(v.hasInvite(k)){
-				v.setKingdom(k);
-				v.setLeader(false);
-				sender.sendMessage(Messages.getMessage("kingdomJoin", k.getName()));
-			} else {
-				sender.sendMessage(Messages.getMessage("noInvite", k.getName()));
-			}
+		Kingdom k = new Kingdom(args[1]);
+		if(v.hasInvite(k)){
+			v.setKingdom(k);
+			v.setLeader(false);
+			sender.sendMessage(Messages.getMessage("kingdomJoin", k.getName()));
+		} else {
+			sender.sendMessage(Messages.getMessage("noInvite", k.getName()));
 		}
 	}
 }

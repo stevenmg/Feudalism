@@ -7,6 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.theglicks.bukkit.fuedalism.Fuedalism;
+import org.theglicks.bukkit.fuedalism.Messages;
 import org.theglicks.bukkit.fuedalism.Vassal;
 import org.theglicks.bukkit.fuedalism.landManagement.SelectionManager;
 
@@ -23,8 +24,10 @@ public class PlayerInteract implements Listener{
 			//Finds if player is interacting with a blocked item
 			if(Fuedalism.mainConfig.getConfig().getList("LandClaims.blockInteractInClaims").contains(event.getClickedBlock().getTypeId())){
 				Vassal v = new Vassal(p.getName());
-				if(!v.canBuild(event.getClickedBlock().getLocation()))
+				if(!v.canBuild(event.getClickedBlock().getLocation())){
 					event.setCancelled(true);
+					p.sendMessage(Messages.getMessage("cannotInteract", null));
+				}
 			}
 		}
 	}

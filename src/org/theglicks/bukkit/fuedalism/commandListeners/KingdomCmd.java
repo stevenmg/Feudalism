@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.theglicks.bukkit.fuedalism.Fuedalism;
+import org.theglicks.bukkit.fuedalism.Messages;
 import org.theglicks.bukkit.fuedalism.commands.KingdomAbandonClaim;
 import org.theglicks.bukkit.fuedalism.commands.KingdomAlly;
 import org.theglicks.bukkit.fuedalism.commands.KingdomClaim;
@@ -39,7 +40,9 @@ public class KingdomCmd implements CommandExecutor{
 			else if(args[0].equalsIgnoreCase("disband"))
 				KingdomDisband.execute(sender, args);
 			else if(args[0].equalsIgnoreCase("kick"))
-				KingdomKick.execute(sender, args);		
+				KingdomKick.execute(sender, args);
+			else
+				sender.sendMessage(Messages.getMessage("invalidCmd", args[0]));
 		}
 		return true;
 	}

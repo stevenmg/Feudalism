@@ -31,6 +31,9 @@ public class Messages {
 	}
 	
 	public static String getMessage(String messageName, String args){
-		return messages.get(messageName).replace("%$%", args);
+		if(messages.get(messageName).contains("%$%"))
+			return messages.get(messageName).replace("%$%", args);
+		
+		return messages.get(messageName);
 	}
 }

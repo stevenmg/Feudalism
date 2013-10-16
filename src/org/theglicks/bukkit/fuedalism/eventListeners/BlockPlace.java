@@ -3,6 +3,7 @@ package org.theglicks.bukkit.fuedalism.eventListeners;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
+import org.theglicks.bukkit.fuedalism.Messages;
 import org.theglicks.bukkit.fuedalism.Vassal;
 import org.theglicks.bukkit.fuedalism.landManagement.Fief;
 import org.theglicks.bukkit.fuedalism.landManagement.KingdomLandClaim;
@@ -29,6 +30,7 @@ public class BlockPlace implements Listener {
 		
 		if(canBuild == false){
 			event.setCancelled(true);
+			event.getPlayer().sendMessage(Messages.getMessage("buildDeny", null));
 		}
 	}
 }

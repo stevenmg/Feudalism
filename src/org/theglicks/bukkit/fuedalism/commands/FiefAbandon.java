@@ -2,6 +2,7 @@ package org.theglicks.bukkit.fuedalism.commands;
 
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.theglicks.bukkit.fuedalism.Messages;
 import org.theglicks.bukkit.fuedalism.Vassal;
 import org.theglicks.bukkit.fuedalism.landManagement.Fief;
 
@@ -17,12 +18,12 @@ public class FiefAbandon {
 		if(f.exists()){
 			if(f.getOwnerName().equals(v.getName())){
 				f.delete();
-				p.sendMessage("Fief abandoned!");
+				p.sendMessage(Messages.getMessage("fiefAbandoned", null));
 			} else {
-				p.sendMessage("You do not own this fief!");
+				p.sendMessage(Messages.getMessage("notOwnerFief", null));
 			}
 		} else {
-			p.sendMessage("Fief does not exist at your location!");
+			p.sendMessage(Messages.getMessage("noFiefAtLocation", null));
 		}
 	}
 }

@@ -1,19 +1,19 @@
-name: Fuedalism
+name: Governance
 author: StevenMG
-version: r0_Alpha
-main: org.theglicks.bukkit.fuedalism.Fuedalism
+version: 1.0.1
+main: org.theglicks.bukkit.governance.Governance
 website: http://dev.bukkit.org/bukkit-mods/gp-factions/
-description: A land claiming and PVP plugin inspired by Greif Prevention and Factions
+description: A land claiming and PVP plugin inspired by Grief Prevention and Factions
 depend: [Vault]
 
 commands:
   kingdom:
     description: Base command to manage kingdoms
-    permission: Fuedalism.basic
+    permission: governance.basic
     permission-message: You do not have permission to use this command!
     aliases: k
   fief:
     description: Base command to manage fiefs
-    permission: Fuedalism.basic
+    permission: governance.basic
     permission-message: You do not have permission to use this command!
     aliases: f
